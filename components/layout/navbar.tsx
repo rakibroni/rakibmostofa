@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Moon, Sun, Code2 } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
@@ -26,8 +26,7 @@ export function Navbar() {
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
+      setScrolled(window.scrollY > 16);
       const sections = navLinks.map((l) => l.href.slice(1));
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
@@ -43,184 +42,141 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    const id = href.slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           scrolled
-            ? "glass border-b border-white/10 shadow-glass"
+            ? "glass-premium border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
             : "bg-transparent"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 lg:h-[4.5rem]">
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 group"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center gap-2.5 group justify-self-start"
             >
-              <div className="w-9 h-9 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-glow group-hover:shadow-glow-lg transition-all duration-300">
-                <Code2 className="w-5 h-5 text-white" />
+              <div className="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/10 flex items-center justify-center font-mono text-sm text-primary group-hover:border-primary/30 transition-colors">
+                {"</>"}
               </div>
-              <span className="font-bold text-lg tracking-tight hidden sm:block">
-                <span className="gradient-text">Rakib</span>
-                <span className="text-muted-foreground">.dev</span>
+              <span className="font-semibold text-[15px] tracking-tight text-white hidden sm:block">
+                Rakib<span className="text-[#94A3B8]">.dev</span>
               </span>
             </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
+            {/* Center nav — desktop */}
+            <nav className="hidden lg:flex items-center gap-1 justify-self-center">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300",
+                    "relative px-3.5 py-2 text-[13px] font-medium rounded-lg transition-colors duration-200",
                     activeSection === link.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-white"
+                      : "text-[#94A3B8] hover:text-white"
                   )}
                 >
                   {activeSection === link.href.slice(1) && (
                     <motion.span
                       layoutId="activeNav"
-                      className="absolute inset-0 bg-primary/10 rounded-lg"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      className="absolute inset-0 bg-white/[0.06] rounded-lg border border-white/[0.08]"
+                      transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
                 </button>
               ))}
-            </div>
+            </nav>
 
             {/* Right actions */}
-            <div className="flex items-center gap-2">
-              {/* Theme Toggle */}
+            <div className="flex items-center gap-2 justify-self-end">
               {mounted && (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() =>
-                    setTheme(theme === "dark" ? "light" : "dark")
-                  }
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all"
                   aria-label="Toggle theme"
                 >
                   <AnimatePresence mode="wait">
                     {theme === "dark" ? (
-                      <motion.div
-                        key="sun"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Sun className="w-5 h-5" />
+                      <motion.div key="sun" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }} transition={{ duration: 0.15 }}>
+                        <Sun className="w-4 h-4" />
                       </motion.div>
                     ) : (
-                      <motion.div
-                        key="moon"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Moon className="w-5 h-5" />
+                      <motion.div key="moon" initial={{ opacity: 0, rotate: 45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -45 }} transition={{ duration: 0.15 }}>
+                        <Moon className="w-4 h-4" />
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </motion.button>
               )}
 
-              {/* CTA */}
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => handleNavClick("#contact")}
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300"
+                className="hidden sm:flex items-center px-4 py-2 text-[13px] font-medium text-white btn-gradient rounded-lg transition-shadow"
               >
                 Hire Me
               </motion.button>
 
-              {/* Mobile menu button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300"
+                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/[0.06]"
                 aria-label="Toggle menu"
               >
-                <AnimatePresence mode="wait">
-                  {isOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                    >
-                      <X className="w-5 h-5" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                    >
-                      <Menu className="w-5 h-5" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
-      </motion.nav>
+      </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-16 left-0 right-0 z-40 glass border-b border-white/10 md:hidden overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-16 left-0 right-0 z-40 glass-premium border-b border-white/[0.06] lg:hidden"
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.04 }}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
+                    "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                     activeSection === link.href.slice(1)
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      ? "bg-white/[0.06] text-white"
+                      : "text-[#94A3B8] hover:text-white hover:bg-white/[0.04]"
                   )}
                 >
                   {link.label}
                 </motion.button>
               ))}
               <motion.button
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
+                transition={{ delay: navLinks.length * 0.04 }}
                 onClick={() => handleNavClick("#contact")}
-                className="mt-2 w-full py-3 bg-primary text-white text-sm font-medium rounded-lg"
+                className="mt-2 w-full py-3 btn-gradient text-white text-sm font-medium rounded-lg"
               >
                 Hire Me
               </motion.button>

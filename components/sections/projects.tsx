@@ -1,281 +1,186 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Star } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/section-heading";
 
+const TRADEFOOX_ANDROID =
+  "https://play.google.com/store/apps/details?id=app.tradefoox.mobile&hl=en";
+const TRADEFOOX_IOS =
+  "https://apps.apple.com/de/app/tradefoox-community-videos/id6477870055";
+const TRADEFOOX_WEB = "https://tradefoox.com/app/offers";
+
 const projects = [
   {
-    title: "Tradefoox Mobile",
-    subtitle: "Marketplace Mobile Application",
+    title: "TRADEFOOX Mobile",
+    subtitle: "Community & Marketplace · 1M+ Downloads",
     description:
-      "A feature-rich marketplace mobile application built with React Native. Enables users to buy and sell products with a seamless, native-feeling experience across iOS and Android.",
-    gradient: "from-blue-600 to-cyan-500",
-    icon: "🛒",
-    featured: true,
-    features: [
-      "OAuth & JWT Authentication",
-      "Shopping Cart & Checkout",
-      "Push Notifications (FCM)",
-      "Multi-language Localization",
-      "Responsive & Accessible UI",
-      "Real-time Updates",
+      "Production React Native app for Tradefoox GmbH — community feeds, short-form video, classifieds, messaging, push notifications, and multilingual support on iOS & Android.",
+    gradient: "from-blue-600/20 to-indigo-600/10",
+    accent: "#3B82F6",
+    tech: ["React Native", "Redux Toolkit", "TypeScript", "RTK Query", "NX"],
+    github: null,
+    liveLinks: [
+      { label: "Google Play", href: TRADEFOOX_ANDROID },
+      { label: "App Store", href: TRADEFOOX_IOS },
     ],
-    tech: ["React Native", "Redux Toolkit", "TypeScript", "RTK Query", "Expo"],
-    github: "https://github.com/rakibmostofa",
-    demo: "#",
-    stats: { stars: 48, forks: 12 },
+    featured: true,
   },
   {
-    title: "Marketplace Platform",
-    subtitle: "Modern E-Commerce Platform",
+    title: "TRADEFOOX Marketplace",
+    subtitle: "Web E-Commerce Platform",
     description:
-      "A full-featured e-commerce platform with advanced product management, real-time inventory, intelligent search with filters, and a streamlined checkout experience.",
-    gradient: "from-violet-600 to-purple-500",
-    icon: "🏪",
+      "Full-featured marketplace on tradefoox.com — product listings, advanced search, category browsing, and a seamless buy & sell experience integrated with the community platform.",
+    gradient: "from-violet-600/20 to-purple-600/10",
+    accent: "#8B5CF6",
+    tech: ["Next.js", "React", "Node.js", "PostgreSQL", "Docker"],
+    github: null,
+    liveLinks: [{ label: "Live Site", href: TRADEFOOX_WEB }],
     featured: true,
-    features: [
-      "Product & Category Management",
-      "Advanced Search & Filtering",
-      "Secure Checkout Flow",
-      "Order Tracking System",
-      "Admin Dashboard",
-      "Analytics Integration",
-    ],
-    tech: ["Next.js", "Node.js", "PostgreSQL", "Docker", "Redis"],
-    github: "https://github.com/rakibmostofa",
-    demo: "#",
-    stats: { stars: 63, forks: 19 },
   },
   {
-    title: "Social Network App",
-    subtitle: "Cross-Platform Social Media",
+    title: "TRADEFOOX Community",
+    subtitle: "Social Network & Video Platform",
     description:
-      "A cross-platform social networking application with real-time messaging, video reels, user profiles, and rich media upload — built for millions of interactions.",
-    gradient: "from-rose-500 to-pink-500",
-    icon: "📱",
-    featured: true,
-    features: [
-      "Activity Feed & Stories",
-      "User Profiles & Follow",
-      "Video Reels & Media",
-      "Real-time Messaging",
-      "Media Upload & Processing",
-      "Multi-language Support",
+      "Cross-platform social experience — activity feeds, reels, user profiles, real-time interaction, and media uploads powering an active community across web and mobile.",
+    gradient: "from-rose-600/20 to-pink-600/10",
+    accent: "#EC4899",
+    tech: ["React Native", "Next.js", "RTK Query", "WebSockets", "Expo"],
+    github: null,
+    liveLinks: [
+      { label: "Google Play", href: TRADEFOOX_ANDROID },
+      { label: "App Store", href: TRADEFOOX_IOS },
     ],
-    tech: ["React Native", "Expo", "RTK Query", "Node.js", "WebSockets"],
-    github: "https://github.com/rakibmostofa",
-    demo: "#",
-    stats: { stars: 92, forks: 31 },
+    featured: true,
   },
   {
     title: "NX Monorepo Architecture",
-    subtitle: "Shared Component Library",
+    subtitle: "Shared Codebase · Web & Mobile",
     description:
-      "A scalable monorepo architecture using NX workspace, featuring shared component libraries, design tokens, and automated pipelines for consistent cross-platform development.",
-    gradient: "from-emerald-500 to-teal-500",
-    icon: "🏗️",
+      "Scalable NX workspace powering TRADEFOOX — shared UI libraries, design tokens, and CI/CD pipelines delivering consistent experiences across web marketplace and mobile apps.",
+    gradient: "from-emerald-600/20 to-teal-600/10",
+    accent: "#10B981",
+    tech: ["NX", "React", "Next.js", "React Native", "TypeScript"],
+    github: null,
+    liveLinks: [{ label: "View Platform", href: TRADEFOOX_WEB }],
     featured: false,
-    features: [
-      "Shared UI Component Library",
-      "Design Token System",
-      "Automated CI/CD Pipeline",
-      "Type-safe API Layer",
-      "Documentation Site",
-      "Storybook Integration",
-    ],
-    tech: ["NX", "React", "Next.js", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/rakibmostofa",
-    demo: "#",
-    stats: { stars: 35, forks: 8 },
   },
 ];
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-}) {
+type Project = (typeof projects)[0];
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
+    <motion.article
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-      className="group relative glass rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-500 flex flex-col"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      whileHover={{ y: -6 }}
+      className="group glass-premium rounded-2xl overflow-hidden border border-white/[0.08] hover:border-white/15 transition-all duration-400 flex flex-col"
     >
-      {project.featured && (
-        <div className="absolute top-4 right-4 z-10">
-          <span className="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full border border-primary/30">
-            <Star className="w-3 h-3 fill-primary" />
+      <div className={`relative h-44 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+        <div className="absolute inset-0 bg-grid-premium opacity-40" />
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(circle at 50% 50%, ${project.accent}15, transparent 70%)`,
+          }}
+        />
+        {project.featured && (
+          <span className="absolute top-4 left-4 text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/10 text-white border border-white/10">
             Featured
           </span>
-        </div>
-      )}
-
-      {/* Project visual header */}
-      <div
-        className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden flex items-center justify-center`}
-      >
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-4 left-4 w-32 h-32 border border-white/30 rounded-2xl rotate-12" />
-          <div className="absolute bottom-4 right-4 w-24 h-24 border border-white/30 rounded-xl -rotate-6" />
-          <div className="absolute top-1/2 left-1/2 w-40 h-40 border border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2" />
-        </div>
-
-        {/* Project icon */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
-          transition={{ duration: 0.4 }}
-          className="relative z-10 text-7xl"
-        >
-          {project.icon}
-        </motion.div>
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <motion.a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white border border-white/30 hover:bg-white/30 transition-all"
-          >
-            <GithubIcon className="w-5 h-5" />
-          </motion.a>
-          <motion.a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white border border-white/30 hover:bg-white/30 transition-all"
-          >
-            <ExternalLink className="w-5 h-5" />
-          </motion.a>
+        )}
+        <div className="absolute bottom-4 left-6 right-6">
+          <h3 className="text-xl font-bold text-white">{project.title}</h3>
+          <p className="text-sm text-white/60 mt-0.5">{project.subtitle}</p>
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-6 flex flex-col flex-1">
-        <div className="mb-3">
-          <h3 className="text-xl font-bold mb-1">{project.title}</h3>
-          <p className="text-sm text-primary font-medium">{project.subtitle}</p>
-        </div>
-
-        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+        <p className="text-sm text-[#94A3B8] leading-relaxed mb-5 flex-1">
           {project.description}
         </p>
 
-        {/* Features */}
-        <div className="mb-5">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-            Key Features
-          </p>
-          <div className="grid grid-cols-2 gap-1">
-            {project.features.map((feature) => (
-              <div
-                key={feature}
-                className="flex items-center gap-1.5 text-xs text-muted-foreground"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                {feature}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tech badges */}
-        <div className="flex flex-wrap gap-2 mb-5 flex-1">
+        <div className="flex flex-wrap gap-2 mb-6">
           {project.tech.map((t) => (
             <span
               key={t}
-              className="px-2 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded border border-primary/20"
+              className="px-2.5 py-1 text-[11px] font-medium text-[#94A3B8] bg-white/[0.04] rounded-md border border-white/[0.06]"
             >
               {t}
             </span>
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/10">
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Star className="w-3.5 h-3.5" />
-              {project.stats.stars}
-            </span>
-            <span>·</span>
-            <span>{project.stats.forks} forks</span>
-          </div>
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.06]">
+          {project.github && (
             <motion.a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-secondary/50 hover:bg-secondary/70 text-foreground rounded-lg border border-white/10 transition-all"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-white glass-premium rounded-lg hover:border-white/20 transition-all"
             >
               <GithubIcon className="w-3.5 h-3.5" />
-              Code
+              GitHub
             </motion.a>
+          )}
+          {project.liveLinks.map((link) => (
             <motion.a
-              href={project.demo}
+              key={link.label}
+              href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary hover:bg-primary/90 text-white rounded-lg transition-all shadow-glow"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-white btn-gradient rounded-lg"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              Demo
+              {link.label}
             </motion.a>
-          </div>
+          ))}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-primary/5 pointer-events-none" />
+    <section id="projects" className="py-28 relative overflow-hidden bg-[#050816]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.06)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="Projects"
+          label="Projects"
           title="Featured Work"
-          subtitle="A collection of production applications and open-source projects that showcase my technical range and problem-solving approach."
+          subtitle="Production applications built at Tradefoox GmbH — live on Google Play, App Store, and the web."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 text-center"
         >
           <a
-            href="https://github.com/rakibmostofa"
+            href="https://github.com/rakibroni"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-muted-foreground hover:text-foreground hover:border-white/40 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-[#94A3B8] hover:text-white border border-white/10 hover:border-white/20 rounded-xl transition-all"
           >
-            <GithubIcon className="w-5 h-5" />
-            View all projects on GitHub
+            View open source on GitHub
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </motion.div>
       </div>

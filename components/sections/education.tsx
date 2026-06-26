@@ -84,14 +84,14 @@ const certifications = [
 
 export function Education() {
   return (
-    <section id="education" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+    <section id="education" className="py-28 relative overflow-hidden bg-[#050816]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.05)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="Education"
+          label="Education"
           title="Academic Background"
-          subtitle="A strong academic foundation combining computer science fundamentals with specialized automotive software expertise."
+          subtitle="Strong foundation in computer science combined with specialized automotive software expertise."
         />
 
         {/* Education Cards */}

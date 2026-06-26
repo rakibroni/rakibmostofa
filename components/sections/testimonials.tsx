@@ -55,14 +55,14 @@ export function Testimonials() {
   const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
 
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent pointer-events-none" />
+    <section id="testimonials" className="py-28 relative overflow-hidden bg-[#050816]">
+      <div className="absolute inset-0 bg-grid-premium opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="Testimonials"
+          label="Testimonials"
           title="What People Say"
-          subtitle="Feedback from colleagues, managers, and clients who have experienced working with me firsthand."
+          subtitle="Feedback from colleagues, managers, and clients who have worked with me firsthand."
         />
 
         {/* Featured testimonial */}
@@ -75,7 +75,7 @@ export function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4 }}
-                className="glass rounded-2xl p-8 border border-white/10 relative"
+                className="glass-premium rounded-2xl p-8 border border-white/[0.08] relative glow-border"
               >
                 {/* Quote icon */}
                 <div

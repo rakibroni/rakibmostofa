@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { toast } from "sonner";
@@ -11,34 +11,26 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "rakib.mostofa@example.com",
-    href: "mailto:rakib.mostofa@example.com",
-    gradient: "from-primary to-blue-400",
-    description: "Best way to reach me",
+    value: "rakibronicse@gmail.com",
+    href: "mailto:rakibronicse@gmail.com",
   },
   {
     icon: LinkedinIcon,
     label: "LinkedIn",
-    value: "/in/rakibmostofa",
-    href: "https://linkedin.com/in/rakibmostofa",
-    gradient: "from-[#0A66C2] to-blue-500",
-    description: "Let's connect professionally",
+    value: "/in/md-rakib-mostofa",
+    href: "https://www.linkedin.com/in/md-rakib-mostofa/",
   },
   {
     icon: GithubIcon,
     label: "GitHub",
-    value: "/rakibmostofa",
-    href: "https://github.com/rakibmostofa",
-    gradient: "from-gray-600 to-gray-800",
-    description: "Check out my code",
+    value: "/rakibroni",
+    href: "https://github.com/rakibroni",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Chemnitz, Germany",
     href: "https://maps.google.com/?q=Chemnitz,Germany",
-    gradient: "from-green-500 to-emerald-500",
-    description: "Available for local & remote",
   },
 ];
 
@@ -76,7 +68,6 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-
     setSubmitting(true);
     await new Promise((r) => setTimeout(r, 1500));
     setSubmitting(false);
@@ -86,9 +77,7 @@ export function Contact() {
     setTimeout(() => setSubmitted(false), 4000);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormData]) {
@@ -97,168 +86,90 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
-      {/* Decorative blobs */}
-      <div className="absolute top-20 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="contact" className="py-28 relative overflow-hidden bg-[#050816]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.08)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="Contact"
-          title="Let's Work Together"
+          label="Contact"
+          title="Let's Build Something Amazing Together"
           subtitle="Have a project in mind or want to discuss opportunities? I'd love to hear from you."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left - Info */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-4">Get In Touch</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I&apos;m always open to discussing new projects, creative ideas, or
-                opportunities to be part of something amazing. Whether it&apos;s a
-                startup, enterprise, or freelance project — let&apos;s build
-                something great together.
-              </p>
-            </div>
-
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {contactInfo.map((info, i) => (
                 <motion.a
                   key={info.label}
                   href={info.href}
                   target={info.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  className="flex items-center gap-4 p-4 glass rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 group"
+                  transition={{ delay: i * 0.08 }}
+                  whileHover={{ y: -2 }}
+                  className="glass-premium glow-border rounded-xl p-4 flex items-center gap-3 group"
                 >
-                  <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${info.gradient} flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300`}
-                  >
-                    <info.icon className="w-5 h-5 text-white" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/40 transition-colors">
+                    <info.icon className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
-                      {info.label}
-                    </p>
-                    <p className="font-semibold text-sm truncate">{info.value}</p>
-                    <p className="text-xs text-muted-foreground">{info.description}</p>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-[#94A3B8] mb-0.5">{info.label}</p>
+                    <p className="text-sm font-medium text-white truncate">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
             </div>
 
-            {/* Availability notice */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 p-4 rounded-xl bg-green-500/10 border border-green-500/20"
+            <motion.a
+              href="mailto:rakibronicse@gmail.com"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white btn-gradient rounded-xl"
             >
-              <div className="flex items-center gap-3">
-                <div className="relative w-3 h-3">
-                  <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75" />
-                  <span className="relative block w-3 h-3 rounded-full bg-green-500" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-green-400">
-                    Available for opportunities
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Open to full-time, part-time, and freelance roles
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              Let&apos;s Build Something Amazing Together
+              <ArrowRight className="w-5 h-5" />
+            </motion.a>
           </motion.div>
 
-          {/* Right - Form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <form
-              onSubmit={handleSubmit}
-              className="glass rounded-2xl p-8 border border-white/10 space-y-5"
-            >
-              <h3 className="text-xl font-bold mb-2">Send a Message</h3>
+            <form onSubmit={handleSubmit} className="glass-premium rounded-2xl p-8 border border-white/[0.08] space-y-5">
+              <h3 className="text-lg font-bold text-white mb-1">Send a Message</h3>
+              <p className="text-sm text-[#94A3B8] mb-4">I typically respond within 24 hours.</p>
 
-              {/* Name */}
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Name <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="John Doe"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${
-                    errors.name ? "border-red-500/50" : "border-white/10"
-                  } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300`}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-xs text-red-400">{errors.name}</p>
-                )}
-              </div>
+              {(["name", "email", "subject"] as const).map((field) => (
+                <div key={field}>
+                  <label className="block text-sm font-medium text-white mb-2 capitalize">
+                    {field} <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type={field === "email" ? "email" : "text"}
+                    name={field}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    placeholder={field === "email" ? "you@example.com" : field === "subject" ? "Project inquiry" : "Your name"}
+                    className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
+                      errors[field] ? "border-red-500/50" : "border-white/[0.08]"
+                    } text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm`}
+                  />
+                  {errors[field] && <p className="mt-1 text-xs text-red-400">{errors[field]}</p>}
+                </div>
+              ))}
 
-              {/* Email */}
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  Email <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="john@example.com"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${
-                    errors.email ? "border-red-500/50" : "border-white/10"
-                  } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300`}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-xs text-red-400">{errors.email}</p>
-                )}
-              </div>
-
-              {/* Subject */}
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Subject <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Project Inquiry / Job Opportunity"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${
-                    errors.subject ? "border-red-500/50" : "border-white/10"
-                  } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300`}
-                />
-                {errors.subject && (
-                  <p className="mt-1 text-xs text-red-400">{errors.subject}</p>
-                )}
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium text-white mb-2">
                   Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -266,23 +177,20 @@ export function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Tell me about your project or opportunity..."
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${
-                    errors.message ? "border-red-500/50" : "border-white/10"
-                  } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none`}
+                  placeholder="Tell me about your project..."
+                  className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
+                    errors.message ? "border-red-500/50" : "border-white/[0.08]"
+                  } text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm resize-none`}
                 />
-                {errors.message && (
-                  <p className="mt-1 text-xs text-red-400">{errors.message}</p>
-                )}
+                {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
               </div>
 
-              {/* Submit */}
               <motion.button
                 type="submit"
                 disabled={submitting || submitted}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 px-6 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 disabled:opacity-60 text-white font-semibold rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 disabled:cursor-not-allowed"
+                className="w-full py-3.5 flex items-center justify-center gap-2 btn-gradient text-white font-semibold rounded-xl disabled:opacity-60 disabled:cursor-not-allowed text-sm"
               >
                 {submitted ? (
                   <>
@@ -300,7 +208,7 @@ export function Contact() {
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                     Send Message
                   </>
                 )}

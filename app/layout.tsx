@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { CustomCursor } from "@/components/ui/custom-cursor";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -99,7 +98,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+    { media: "(prefers-color-scheme: dark)", color: "#050816" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -125,7 +124,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <CustomCursor />
           <ScrollProgress />
           <Navbar />
           <main>{children}</main>
