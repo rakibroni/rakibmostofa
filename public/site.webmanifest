@@ -1,0 +1,16 @@
+{
+  "name": "Md Rakib Mostofa - Portfolio",
+  "short_name": "Rakib.dev",
+  "description": "Full-Stack Software Engineer based in Chemnitz, Germany",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
