@@ -10,9 +10,9 @@ const education = [
     field: "Automotive Software Engineering",
     institution: "Technische Universität Chemnitz",
     location: "Chemnitz, Germany",
-    period: "2021 – Present",
+    period: "2021 – 2024",
     current: true,
-    grade: "In Progress",
+    grade: "Successfully Completed",
     description:
       "Pursuing advanced studies at the intersection of automotive systems and software engineering. Covering embedded systems, AUTOSAR, functional safety (ISO 26262), and modern software architectures for connected vehicles.",
     courses: [
@@ -36,7 +36,7 @@ const education = [
     location: "Bangladesh",
     period: "2015 – 2019",
     current: false,
-    grade: "CGPA: 3.7/4.0",
+    grade: "Successfully Completed",
     description:
       "Completed a comprehensive computer science program with focus on algorithms, data structures, software engineering principles, database management, and full-stack web development.",
     courses: [
