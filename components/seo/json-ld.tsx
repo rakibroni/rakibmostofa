@@ -30,8 +30,8 @@ export function JsonLd() {
       "Docker",
     ],
     sameAs: [
-      "https://github.com/rakibmostofa",
-      "https://linkedin.com/in/rakibmostofa",
+      "https://github.com/rakibroni",
+      "https://www.linkedin.com/in/md-rakib-mostofa/",
     ],
   };
 

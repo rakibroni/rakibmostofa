@@ -110,7 +110,7 @@ export function Achievements() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="Achievements"
+          label="Achievements"
           title="By The Numbers"
           subtitle="Milestones that define my journey as a software engineer — every number tells a story of growth and impact."
         />

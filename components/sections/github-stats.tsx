@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const GITHUB_USERNAME = "rakibmostofa";
+const GITHUB_USERNAME = "rakibroni";
 
 const stats = [
   {
@@ -28,17 +28,17 @@ const stats = [
 
 export function GithubStats() {
   return (
-    <section id="github" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/20 to-transparent pointer-events-none" />
+    <section id="github" className="py-28 relative overflow-hidden bg-[#050816]">
+      <div className="absolute inset-0 bg-grid-premium opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="GitHub"
-          title="Open Source Activity"
-          subtitle="My contributions to open source and personal projects — where passion meets code."
+          label="GitHub"
+          title="Open Source Contributions"
+          subtitle="Contributions to open source and personal projects — where passion meets code."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {stats.slice(0, 2).map((stat, i) => (
             <motion.div
               key={stat.title}
@@ -46,8 +46,8 @@ export function GithubStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="glass rounded-2xl p-4 border border-white/10 overflow-hidden"
+              whileHover={{ y: -4 }}
+              className="glass-premium rounded-2xl p-4 border border-white/[0.08] overflow-hidden glow-border"
             >
               <img
                 src={stat.src}
@@ -66,7 +66,7 @@ export function GithubStats() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.01, y: -4 }}
-          className="glass rounded-2xl p-4 border border-white/10 overflow-hidden"
+          className="glass-premium rounded-2xl p-4 border border-white/[0.08] overflow-hidden glow-border"
         >
           <img
             src={stats[2].src}
@@ -76,16 +76,15 @@ export function GithubStats() {
           />
         </motion.div>
 
-        {/* Contribution graph */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 glass rounded-2xl p-6 border border-white/10"
+          className="mt-6 glass-premium rounded-2xl p-6 border border-white/[0.08]"
         >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">Contribution Graph</h3>
+            <h3 className="font-semibold text-white">Contribution Graph</h3>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
