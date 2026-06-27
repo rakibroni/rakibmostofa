@@ -1,58 +1,58 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { SectionHeading } from '@/components/ui/section-heading'
 
 const testimonials = [
   {
-    name: "Sarah Mueller",
-    role: "CTO at Tradefoox GmbH",
-    avatar: "SM",
+    name: 'Ronny Streit',
+    role: 'CEO  and Founder',
+    avatar: 'RS',
     rating: 5,
-    gradient: "from-primary to-accent",
-    text: "Rakib is an exceptional engineer who consistently delivers high-quality code. His expertise in React Native and Next.js helped us scale our marketplace app to thousands of users. His attention to performance and clean architecture is outstanding.",
-    company: "Tradefoox GmbH",
-    location: "Chemnitz, Germany",
+    gradient: 'from-primary to-accent',
+    text: 'Rakib is an exceptional engineer who consistently delivers high-quality code. His expertise in React Native and Next.js helped us scale our marketplace app to thousands of users. His attention to performance and clean architecture is outstanding.',
+    company: 'Tradefoox',
+    location: 'Chemnitz, Germany',
   },
   {
-    name: "Alex Johnson",
-    role: "Lead Developer",
-    avatar: "AJ",
+    name: 'Sofiia Kozytsk',
+    role: 'Full-Stack Developer',
+    avatar: 'SK',
     rating: 5,
-    gradient: "from-purple-500 to-pink-500",
-    text: "Working with Rakib has been a pleasure. He brings deep technical knowledge combined with excellent communication skills. His ability to architect complex features while keeping the codebase clean is impressive. A true full-stack professional.",
-    company: "Tech Startup",
-    location: "Remote",
+    gradient: 'from-purple-500 to-pink-500',
+    text: 'Working with Rakib has been a pleasure. He brings deep technical knowledge combined with excellent communication skills. His ability to architect complex features while keeping the codebase clean is impressive. A true full-stack professional.',
+    company: 'Tradefoox',
+    location: 'Germany',
   },
   {
-    name: "Priya Sharma",
-    role: "Product Manager",
-    avatar: "PS",
+    name: 'Jakob Podkrajac',
+    role: 'CTO and co-founder',
+    avatar: 'JP',
     rating: 5,
-    gradient: "from-green-500 to-teal-500",
-    text: "Rakib has an incredible ability to translate complex product requirements into elegant technical solutions. He proactively identifies potential issues and always delivers on time. His mobile app work on our social platform was exceptional.",
-    company: "SocialApp Inc.",
-    location: "Remote",
+    gradient: 'from-green-500 to-teal-500',
+    text: 'Within his internship, Md Rakib supported us in the backend with the development of functions such as our ask an expert feature. He has always worked efficiently, contributed his own ideas and expanded his Laravel knowledge. I think Ali is an ambitious programmer and it was great to work with him!',
+    company: 'Curawork GmbH',
+    location: 'Germany',
   },
   {
-    name: "Thomas Weber",
-    role: "Senior Engineer",
-    avatar: "TW",
+    name: 'Thomas Weber',
+    role: 'Senior Engineer',
+    avatar: 'TW',
     rating: 5,
-    gradient: "from-orange-500 to-amber-500",
+    gradient: 'from-orange-500 to-amber-500',
     text: "Rakib's contributions to our NX monorepo architecture were game-changing. He established patterns and tooling that improved our entire team's productivity. His TypeScript expertise and commitment to code quality set a high standard.",
-    company: "Enterprise Tech",
-    location: "Germany",
+    company: 'Mailingwork GmbH',
+    location: 'Germany',
   },
-];
+]
 
 export function Testimonials() {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0)
 
-  const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
-  const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
+  const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1))
+  const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))
 
   return (
     <section id="testimonials" className="py-28 relative overflow-hidden bg-background">
@@ -123,9 +123,7 @@ export function Testimonials() {
                     key={i}
                     onClick={() => setCurrent(i)}
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      i === current
-                        ? "w-8 bg-primary"
-                        : "w-2 bg-white/20 hover:bg-white/40"
+                      i === current ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Go to testimonial ${i + 1}`}
                   />
@@ -169,8 +167,8 @@ export function Testimonials() {
               onClick={() => setCurrent(i)}
               className={`glass rounded-xl p-4 border text-left transition-all duration-300 ${
                 i === current
-                  ? "border-primary/40 shadow-glow"
-                  : "border-border hover:border-border"
+                  ? 'border-primary/40 shadow-glow'
+                  : 'border-border hover:border-border'
               }`}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -184,13 +182,11 @@ export function Testimonials() {
                   <p className="text-xs text-muted-foreground">{t.role}</p>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground line-clamp-3">
-                &ldquo;{t.text}&rdquo;
-              </p>
+              <p className="text-xs text-muted-foreground line-clamp-3">&ldquo;{t.text}&rdquo;</p>
             </motion.button>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
