@@ -24,7 +24,7 @@ const highlights = [
 
 export function About() {
   return (
-    <section id="about" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="about" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -40,10 +40,10 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-5 text-[#94A3B8] leading-relaxed text-base"
+            className="space-y-5 text-muted-foreground leading-relaxed text-base"
           >
             <p>
-              I&apos;m <span className="text-white font-semibold">Md Rakib Mostofa</span>, a Full Stack
+              I&apos;m <span className="text-foreground font-semibold">Md Rakib Mostofa</span>, a Full Stack
               Developer based in <span className="text-primary font-medium">Chemnitz, Germany</span>.
               I specialize in React, React Native, Next.js, and Node.js — building products that scale.
             </p>
@@ -72,8 +72,8 @@ export function About() {
                   <item.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">{item.description}</p>
+                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               </motion.div>
             ))}

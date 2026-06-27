@@ -55,7 +55,7 @@ export function Testimonials() {
   const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
 
   return (
-    <section id="testimonials" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="testimonials" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-premium opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -75,7 +75,7 @@ export function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4 }}
-                className="glass-premium rounded-2xl p-8 border border-white/[0.08] relative glow-border"
+                className="glass-premium rounded-2xl p-8 border border-border relative glow-border"
               >
                 {/* Quote icon */}
                 <div
@@ -137,7 +137,7 @@ export function Testimonials() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={prev}
-                  className="w-10 h-10 rounded-xl glass border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                  className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -146,7 +146,7 @@ export function Testimonials() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={next}
-                  className="w-10 h-10 rounded-xl glass border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                  className="w-10 h-10 rounded-xl glass border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -170,7 +170,7 @@ export function Testimonials() {
               className={`glass rounded-xl p-4 border text-left transition-all duration-300 ${
                 i === current
                   ? "border-primary/40 shadow-glow"
-                  : "border-white/10 hover:border-white/20"
+                  : "border-border hover:border-border"
               }`}
             >
               <div className="flex items-center gap-3 mb-3">

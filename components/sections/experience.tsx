@@ -49,7 +49,7 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="experience" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-premium opacity-30 pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -73,7 +73,7 @@ export function Experience() {
                 className="relative pl-10"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary bg-[#050816] z-10">
+                <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary bg-background z-10">
                   {exp.current && (
                     <span className="absolute inset-0 rounded-full animate-ping bg-primary/40" />
                   )}
@@ -83,7 +83,7 @@ export function Experience() {
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-lg font-bold text-white">{exp.role}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{exp.role}</h3>
                         {exp.current && (
                           <span className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider bg-emerald-500/15 text-emerald-400 rounded-full border border-emerald-500/20">
                             Current
@@ -92,7 +92,7 @@ export function Experience() {
                       </div>
                       <p className="text-primary font-medium text-sm">{exp.company}</p>
                     </div>
-                    <div className="text-right text-xs text-[#94A3B8] space-y-1">
+                    <div className="text-right text-xs text-muted-foreground space-y-1">
                       <div className="flex items-center gap-1 justify-end">
                         <Calendar className="w-3 h-3" />
                         {exp.period}
@@ -106,7 +106,7 @@ export function Experience() {
 
                   <ul className="space-y-2 mb-5">
                     {exp.responsibilities.map((resp, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-[#94A3B8]">
+                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                         {resp}
                       </li>
@@ -117,7 +117,7 @@ export function Experience() {
                     {exp.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 text-[11px] font-medium text-[#94A3B8] bg-white/[0.04] rounded border border-white/[0.06]"
+                        className="px-2 py-0.5 text-[11px] font-medium text-muted-foreground bg-muted/50 rounded border border-border"
                       >
                         {t}
                       </span>

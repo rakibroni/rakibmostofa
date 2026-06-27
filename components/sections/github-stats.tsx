@@ -28,7 +28,7 @@ const stats = [
 
 export function GithubStats() {
   return (
-    <section id="github" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="github" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-premium opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -47,7 +47,7 @@ export function GithubStats() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className="glass-premium rounded-2xl p-4 border border-white/[0.08] overflow-hidden glow-border"
+              className="glass-premium rounded-2xl p-4 border border-border overflow-hidden glow-border"
             >
               <img
                 src={stat.src}
@@ -66,7 +66,7 @@ export function GithubStats() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.01, y: -4 }}
-          className="glass-premium rounded-2xl p-4 border border-white/[0.08] overflow-hidden glow-border"
+          className="glass-premium rounded-2xl p-4 border border-border overflow-hidden glow-border"
         >
           <img
             src={stats[2].src}
@@ -81,10 +81,10 @@ export function GithubStats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 glass-premium rounded-2xl p-6 border border-white/[0.08]"
+          className="mt-6 glass-premium rounded-2xl p-6 border border-border"
         >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-white">Contribution Graph</h3>
+            <h3 className="font-semibold text-foreground">Contribution Graph</h3>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"

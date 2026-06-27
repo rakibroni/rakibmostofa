@@ -84,7 +84,7 @@ const certifications = [
 
 export function Education() {
   return (
-    <section id="education" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="education" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.05)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -202,7 +202,7 @@ export function Education() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 whileHover={{ scale: 1.04, y: -4 }}
-                className="glass rounded-xl p-5 border border-white/10 text-center cursor-default group"
+                className="glass rounded-xl p-5 border border-border text-center cursor-default group"
               >
                 <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
                   {cert.icon}

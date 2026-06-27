@@ -103,7 +103,7 @@ export function Achievements() {
 
       {/* Large bg text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="text-[20rem] font-black text-white/[0.02] select-none">
+        <span className="text-[20rem] font-black text-foreground/[0.03] select-none">
           STATS
         </span>
       </div>
@@ -124,7 +124,7 @@ export function Achievements() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.1, type: "spring" }}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="group relative glass rounded-2xl p-8 border border-white/10 hover:border-white/20 text-center cursor-default overflow-hidden"
+              className="group relative glass rounded-2xl p-8 border border-border hover:border-border text-center cursor-default overflow-hidden"
             >
               {/* Background gradient on hover */}
               <div

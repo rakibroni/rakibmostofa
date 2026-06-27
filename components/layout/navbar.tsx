@@ -54,7 +54,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           scrolled
-            ? "glass-premium border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+            ? "glass-premium border-b border-border shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
             : "bg-transparent"
         )}
       >
@@ -66,11 +66,11 @@ export function Navbar() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2.5 group justify-self-start"
             >
-              <div className="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/10 flex items-center justify-center font-mono text-sm text-primary group-hover:border-primary/30 transition-colors">
+              <div className="w-9 h-9 rounded-lg bg-muted/60 border border-border flex items-center justify-center font-mono text-sm text-primary group-hover:border-primary/30 transition-colors">
                 {"</>"}
               </div>
-              <span className="font-semibold text-[15px] tracking-tight text-white hidden sm:block">
-                Rakib<span className="text-[#94A3B8]">.dev</span>
+              <span className="font-semibold text-[15px] tracking-tight text-foreground hidden sm:block">
+                Rakib<span className="text-muted-foreground">.dev</span>
               </span>
             </Link>
 
@@ -83,14 +83,14 @@ export function Navbar() {
                   className={cn(
                     "relative px-3.5 py-2 text-[13px] font-medium rounded-lg transition-colors duration-200",
                     activeSection === link.href.slice(1)
-                      ? "text-white"
-                      : "text-[#94A3B8] hover:text-white"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {activeSection === link.href.slice(1) && (
                     <motion.span
                       layoutId="activeNav"
-                      className="absolute inset-0 bg-white/[0.06] rounded-lg border border-white/[0.08]"
+                      className="absolute inset-0 bg-muted/60 rounded-lg border border-border"
                       transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                     />
                   )}
@@ -106,7 +106,7 @@ export function Navbar() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/60 border border-transparent hover:border-border transition-all"
                   aria-label="Toggle theme"
                 >
                   <AnimatePresence mode="wait">
@@ -134,7 +134,7 @@ export function Navbar() {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/[0.06]"
+                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -151,7 +151,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 glass-premium border-b border-white/[0.06] lg:hidden"
+            className="fixed top-16 left-0 right-0 z-40 glass-premium border-b border-border lg:hidden"
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link, i) => (
@@ -164,8 +164,8 @@ export function Navbar() {
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                     activeSection === link.href.slice(1)
-                      ? "bg-white/[0.06] text-white"
-                      : "text-[#94A3B8] hover:text-white hover:bg-white/[0.04]"
+                      ? "bg-muted/60 text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   {link.label}
