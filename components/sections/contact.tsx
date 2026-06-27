@@ -39,6 +39,7 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
+  website: string;
 }
 
 export function Contact() {
@@ -47,6 +48,7 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -68,13 +70,34 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
-    toast.success("Message sent! I'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 4000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error ?? "Failed to send message");
+      }
+
+      setSubmitted(true);
+      toast.success("Message sent! I'll get back to you soon.");
+      setFormData({ name: "", email: "", subject: "", message: "", website: "" });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please email me directly."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -148,6 +171,18 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="glass-premium rounded-2xl p-8 border border-white/[0.08] space-y-5">
               <h3 className="text-lg font-bold text-white mb-1">Send a Message</h3>
               <p className="text-sm text-[#94A3B8] mb-4">I typically respond within 24 hours.</p>
+
+              {/* Honeypot — hidden from users, catches bots */}
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute opacity-0 pointer-events-none h-0 w-0"
+              />
 
               {(["name", "email", "subject"] as const).map((field) => (
                 <div key={field}>
