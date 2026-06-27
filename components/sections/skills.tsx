@@ -20,7 +20,7 @@ const skills = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="skills" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-premium opacity-50 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -48,7 +48,7 @@ export function Skills() {
               >
                 {skill.symbol}
               </span>
-              <span className="text-xs font-medium text-[#94A3B8] group-hover:text-white transition-colors text-center">
+              <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
                 {skill.name}
               </span>
             </motion.div>

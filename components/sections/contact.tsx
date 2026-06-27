@@ -109,7 +109,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="contact" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.08)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -144,8 +144,8 @@ export function Contact() {
                     <info.icon className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#94A3B8] mb-0.5">{info.label}</p>
-                    <p className="text-sm font-medium text-white truncate">{info.value}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{info.label}</p>
+                    <p className="text-sm font-medium text-foreground truncate">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
@@ -168,9 +168,9 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-premium rounded-2xl p-8 border border-white/[0.08] space-y-5">
-              <h3 className="text-lg font-bold text-white mb-1">Send a Message</h3>
-              <p className="text-sm text-[#94A3B8] mb-4">I typically respond within 24 hours.</p>
+            <form onSubmit={handleSubmit} className="glass-premium rounded-2xl p-8 border border-border space-y-5">
+              <h3 className="text-lg font-bold text-foreground mb-1">Send a Message</h3>
+              <p className="text-sm text-muted-foreground mb-4">I typically respond within 24 hours.</p>
 
               {/* Honeypot — hidden from users, catches bots */}
               <input
@@ -186,7 +186,7 @@ export function Contact() {
 
               {(["name", "email", "subject"] as const).map((field) => (
                 <div key={field}>
-                  <label className="block text-sm font-medium text-white mb-2 capitalize">
+                  <label className="block text-sm font-medium text-foreground mb-2 capitalize">
                     {field} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -195,16 +195,16 @@ export function Contact() {
                     value={formData[field]}
                     onChange={handleChange}
                     placeholder={field === "email" ? "you@example.com" : field === "subject" ? "Project inquiry" : "Your name"}
-                    className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                      errors[field] ? "border-red-500/50" : "border-white/[0.08]"
-                    } text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm`}
+                    className={`w-full px-4 py-3 rounded-xl bg-muted/40 border ${
+                      errors[field] ? "border-red-500/50" : "border-border"
+                    } text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm`}
                   />
                   {errors[field] && <p className="mt-1 text-xs text-red-400">{errors[field]}</p>}
                 </div>
               ))}
 
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -213,9 +213,9 @@ export function Contact() {
                   onChange={handleChange}
                   rows={5}
                   placeholder="Tell me about your project..."
-                  className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                    errors.message ? "border-red-500/50" : "border-white/[0.08]"
-                  } text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm resize-none`}
+                  className={`w-full px-4 py-3 rounded-xl bg-muted/40 border ${
+                    errors.message ? "border-red-500/50" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm resize-none`}
                 />
                 {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
               </div>

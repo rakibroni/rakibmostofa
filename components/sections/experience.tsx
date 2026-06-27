@@ -6,50 +6,67 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const experiences = [
   {
-    role: "Full Stack Developer",
-    company: "Tradefoox GmbH",
+    role: "Frontend Developer",
+    company: "SCC Group",
     location: "Chemnitz, Germany",
-    period: "2022 – Present",
+    period: "04/2024 – Present",
     current: true,
     responsibilities: [
-      "Developed React Native marketplace app used by thousands of active users",
-      "Architected NX monorepo with shared component library across web and mobile",
-      "Optimized performance, reducing load times by 40% through code splitting",
-      "Led technical discussions and mentored junior developers",
+      "Developed and maintained React.js, React Native, and Next.js applications, enhancing UI/UX",
+      "Integrated RESTful APIs using Golang (Gin framework), supporting 10,000+ concurrent users",
+      "Optimized Redux Toolkit & RTK Query, reducing API latency by 30%",
+      "Designed responsive UIs with Tailwind CSS & Bootstrap, improving usability by 25%",
+      "Improved CI/CD pipeline configurations and contributed to Dockerized deployments",
     ],
-    tech: ["React Native", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Docker"],
+    tech: ["React", "React Native", "Next.js", "Go", "Redux Toolkit", "RTK Query", "Tailwind CSS", "Docker"],
   },
   {
-    role: "Frontend Developer",
-    company: "Tech Startup",
-    location: "Remote",
-    period: "2020 – 2022",
+    role: "Full-Stack Developer",
+    company: "Mailingwork GmbH",
+    location: "Chemnitz, Germany",
+    period: "02/2022 – 10/2023",
     current: false,
     responsibilities: [
-      "Built responsive web applications using React and Next.js with TypeScript",
-      "Developed reusable component libraries following atomic design principles",
-      "Integrated RESTful APIs and GraphQL endpoints with proper error handling",
+      "Built new features & resolved bugs for an email marketing platform, improving functionality",
+      "Developed and maintained dynamic microsite & landing pages, enhancing marketing campaigns",
+      "Reduced support tickets by 15% by documenting troubleshooting techniques",
+      "Collaborated in an Agile team of 8, ensuring timely project delivery",
     ],
-    tech: ["React", "Next.js", "TypeScript", "Redux", "GraphQL", "Tailwind CSS"],
+    tech: ["React", "Next.js", "TypeScript", "Node.js", "Agile", "Email Marketing"],
   },
   {
-    role: "Junior Web Developer",
-    company: "Digital Agency",
-    location: "Bangladesh",
-    period: "2019 – 2020",
+    role: "Full-Stack Developer (Intern)",
+    company: "Curawork GmbH",
+    location: "Chemnitz, Germany",
+    period: "09/2021 – 02/2022",
     current: false,
     responsibilities: [
-      "Built and maintained PHP/Laravel web applications for various clients",
-      "Developed RESTful APIs consumed by frontend applications",
-      "Participated in code reviews and learned modern development practices",
+      "Assisted in the development & optimization of a career platform, improving performance",
+      "Ensured secure administration & processing of user data, following GDPR standards",
+      "Contributed to project planning & implementation, collaborating with cross-functional teams",
     ],
-    tech: ["PHP", "Laravel", "MySQL", "JavaScript"],
+    tech: ["React", "Node.js", "TypeScript", "GDPR", "PostgreSQL"],
+  },
+  {
+    role: "Web Developer",
+    company: "ATI Limited",
+    location: "Dhaka, Bangladesh",
+    period: "01/2015 – 03/2019",
+    current: false,
+    responsibilities: [
+      "Developed scalable backend services and APIs using PHP and Node.js",
+      "Led and collaborated on projects, managing documentation and team coordination",
+      "Designed and implemented custom ERP solutions for 10,000+ users",
+      "Managed role-based access control (RBAC) for secure administration",
+      "Designed modules for admission, courses, exams, payments, inventory, HR, and library",
+    ],
+    tech: ["PHP", "Node.js", "MySQL", "ERP", "RBAC", "REST APIs"],
   },
 ];
 
 export function Experience() {
   return (
-    <section id="experience" className="py-28 relative overflow-hidden bg-[#050816]">
+    <section id="experience" className="py-28 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-premium opacity-30 pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -73,7 +90,7 @@ export function Experience() {
                 className="relative pl-10"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary bg-[#050816] z-10">
+                <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary bg-background z-10">
                   {exp.current && (
                     <span className="absolute inset-0 rounded-full animate-ping bg-primary/40" />
                   )}
@@ -83,7 +100,7 @@ export function Experience() {
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-lg font-bold text-white">{exp.role}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{exp.role}</h3>
                         {exp.current && (
                           <span className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider bg-emerald-500/15 text-emerald-400 rounded-full border border-emerald-500/20">
                             Current
@@ -92,7 +109,7 @@ export function Experience() {
                       </div>
                       <p className="text-primary font-medium text-sm">{exp.company}</p>
                     </div>
-                    <div className="text-right text-xs text-[#94A3B8] space-y-1">
+                    <div className="text-right text-xs text-muted-foreground space-y-1">
                       <div className="flex items-center gap-1 justify-end">
                         <Calendar className="w-3 h-3" />
                         {exp.period}
@@ -106,7 +123,7 @@ export function Experience() {
 
                   <ul className="space-y-2 mb-5">
                     {exp.responsibilities.map((resp, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-[#94A3B8]">
+                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                         {resp}
                       </li>
@@ -117,7 +134,7 @@ export function Experience() {
                     {exp.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 text-[11px] font-medium text-[#94A3B8] bg-white/[0.04] rounded border border-white/[0.06]"
+                        className="px-2 py-0.5 text-[11px] font-medium text-muted-foreground bg-muted/50 rounded border border-border"
                       >
                         {t}
                       </span>

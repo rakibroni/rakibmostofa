@@ -68,7 +68,7 @@ export function Hero() {
       ref={heroRef}
       id="hero"
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#050816]"
+      className="relative min-h-screen flex items-center overflow-hidden bg-background"
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -99,13 +99,13 @@ export function Hero() {
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-premium border border-white/[0.08] mb-8"
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-premium border border-border mb-8"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
               </span>
-              <span className="text-[13px] font-medium text-[#94A3B8]">
+              <span className="text-[13px] font-medium text-muted-foreground">
                 Available for Full-time & Freelance
               </span>
             </motion.div>
@@ -113,7 +113,7 @@ export function Hero() {
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.05 }}
-              className="text-[#94A3B8] text-lg mb-2"
+              className="text-muted-foreground text-lg mb-2"
             >
               Hi, I&apos;m
             </motion.p>
@@ -123,16 +123,16 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold tracking-tight leading-[1.08] mb-4"
             >
-              <span className="text-white">Md </span>
+              <span className="text-foreground">Md </span>
               <span className="gradient-text-hero">Rakib</span>
               <br />
-              <span className="text-white">Mostofa</span>
+              <span className="text-foreground">Mostofa</span>
             </motion.h1>
 
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-xl sm:text-2xl font-semibold text-white mb-3"
+              className="text-xl sm:text-2xl font-semibold text-foreground mb-3"
             >
               Full Stack Developer
             </motion.p>
@@ -140,7 +140,7 @@ export function Hero() {
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-[15px] text-[#94A3B8] font-medium mb-6 leading-relaxed"
+              className="text-sm sm:text-[15px] text-muted-foreground font-medium mb-6 leading-relaxed"
             >
               React Native • React • Next.js • Node.js • NestJS • TypeScript
             </motion.p>
@@ -148,7 +148,7 @@ export function Hero() {
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-base text-[#94A3B8] leading-relaxed mb-6 max-w-lg"
+              className="text-base text-muted-foreground leading-relaxed mb-6 max-w-lg"
             >
               I build scalable web and mobile applications with clean architecture,
               exceptional user experiences, and high-performance solutions.
@@ -157,13 +157,13 @@ export function Hero() {
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#94A3B8] mb-10"
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground mb-10"
             >
               <span className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-primary" />
                 Germany
               </span>
-              <span className="text-white/20">|</span>
+              <span className="text-muted-foreground/40">|</span>
               <span>Available Worldwide</span>
             </motion.div>
 
@@ -181,8 +181,8 @@ export function Hero() {
                   className="glass-premium glow-border rounded-xl p-4 cursor-default"
                 >
                   <stat.icon className="w-4 h-4 text-primary mb-2 opacity-80" />
-                  <div className="text-xl font-bold text-white leading-none">{stat.value}</div>
-                  <div className="text-[11px] text-[#94A3B8] mt-1.5 leading-tight">{stat.label}</div>
+                  <div className="text-xl font-bold text-foreground leading-none">{stat.value}</div>
+                  <div className="text-[11px] text-muted-foreground mt-1.5 leading-tight">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -208,7 +208,7 @@ export function Hero() {
                 whileTap={{ scale: 0.97 }}
                 href="/resume.pdf"
                 download
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl border border-white/15 hover:border-primary/40 hover:bg-white/[0.04] transition-all"
+                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
@@ -218,7 +218,7 @@ export function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white glass-premium rounded-xl hover:border-white/20 transition-all"
+                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground glass-premium rounded-xl hover:border-border transition-all"
               >
                 Let&apos;s Talk
               </motion.button>
@@ -239,7 +239,7 @@ export function Hero() {
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full glass-premium flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-primary/30 glow-border transition-colors"
+                  className="w-10 h-10 rounded-full glass-premium flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 glow-border transition-colors"
                 >
                   <Icon className="w-4 h-4" />
                 </motion.a>
@@ -278,7 +278,7 @@ export function Hero() {
                     style={{ boxShadow: `0 4px 20px ${tech.color}20` }}
                   >
                     <span className="text-base leading-none">{tech.symbol}</span>
-                    <span className="text-[7px] font-medium text-[#94A3B8] text-center leading-tight px-1">
+                    <span className="text-[7px] font-medium text-muted-foreground text-center leading-tight px-1">
                       {tech.name}
                     </span>
                   </div>
@@ -295,7 +295,7 @@ export function Hero() {
               className="relative z-10 w-52 h-52 sm:w-60 sm:h-60 lg:w-64 lg:h-64"
             >
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-xl scale-110" />
-              <div className="absolute inset-[6%] rounded-full overflow-hidden border-2 border-white/15 shadow-[0_0_60px_rgba(59,130,246,0.2)]">
+              <div className="absolute inset-[6%] rounded-full overflow-hidden border-2 border-border shadow-[0_0_60px_rgba(59,130,246,0.2)]">
                 <Image
                   src="/profile.jpg"
                   alt="Md Rakib Mostofa - Full Stack Developer"
@@ -316,14 +316,14 @@ export function Hero() {
           transition={{ delay: 1.2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#94A3B8]">
+          <span className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             Scroll to Explore
           </span>
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+          <div className="w-6 h-10 rounded-full border-2 border-border flex justify-center pt-2">
             <motion.div
               animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1 h-2 rounded-full bg-white/60"
+              className="w-1 h-2 rounded-full bg-foreground/40"
             />
           </div>
         </motion.div>
