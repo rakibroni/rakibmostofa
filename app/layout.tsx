@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo/json-ld";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -128,6 +129,7 @@ export default function RootLayout({
             theme="system"
           />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
