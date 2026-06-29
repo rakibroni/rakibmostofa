@@ -1,8 +1,10 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
+import { externalLinks } from "@/lib/projects";
 
 const footerLinks = [
   { label: "About", href: "#about" },
@@ -12,13 +14,21 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: GithubIcon, href: "https://github.com/rakibroni", label: "GitHub" },
-  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/md-rakib-mostofa/", label: "LinkedIn" },
+  { icon: GithubIcon, href: externalLinks.github, label: "GitHub" },
+  { icon: LinkedinIcon, href: externalLinks.linkedin, label: "LinkedIn" },
   { icon: Mail, href: "mailto:rakibronicse@gmail.com", label: "Email" },
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+  const router = useRouter();
+
   const scrollTo = (href: string) => {
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
+
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
   };
 

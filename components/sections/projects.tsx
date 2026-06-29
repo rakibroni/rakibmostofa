@@ -1,74 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/section-heading";
-
-const TRADEFOOX_ANDROID =
-  "https://play.google.com/store/apps/details?id=app.tradefoox.mobile&hl=en";
-const TRADEFOOX_IOS =
-  "https://apps.apple.com/de/app/tradefoox-community-videos/id6477870055";
-const TRADEFOOX_WEB = "https://tradefoox.com/app/offers";
-
-const projects = [
-  {
-    title: "TRADEFOOX Mobile",
-    subtitle: "Community & Marketplace · 1M+ Downloads",
-    description:
-      "Production React Native app for Tradefoox GmbH — community feeds, short-form video, classifieds, messaging, push notifications, and multilingual support on iOS & Android.",
-    gradient: "from-blue-600/20 to-indigo-600/10",
-    accent: "#3B82F6",
-    tech: ["React Native", "Redux Toolkit", "TypeScript", "RTK Query", "NX"],
-    github: null,
-    liveLinks: [
-      { label: "Google Play", href: TRADEFOOX_ANDROID },
-      { label: "App Store", href: TRADEFOOX_IOS },
-    ],
-    featured: true,
-  },
-  {
-    title: "TRADEFOOX Marketplace",
-    subtitle: "Web E-Commerce Platform",
-    description:
-      "Full-featured marketplace on tradefoox.com — product listings, advanced search, category browsing, and a seamless buy & sell experience integrated with the community platform.",
-    gradient: "from-violet-600/20 to-purple-600/10",
-    accent: "#8B5CF6",
-    tech: ["Next.js", "React", "Node.js", "PostgreSQL", "Docker"],
-    github: null,
-    liveLinks: [{ label: "Live Site", href: TRADEFOOX_WEB }],
-    featured: true,
-  },
-  {
-    title: "TRADEFOOX Community",
-    subtitle: "Social Network & Video Platform",
-    description:
-      "Cross-platform social experience — activity feeds, reels, user profiles, real-time interaction, and media uploads powering an active community across web and mobile.",
-    gradient: "from-rose-600/20 to-pink-600/10",
-    accent: "#EC4899",
-    tech: ["React Native", "Next.js", "RTK Query", "WebSockets", "Expo"],
-    github: null,
-    liveLinks: [
-      { label: "Google Play", href: TRADEFOOX_ANDROID },
-      { label: "App Store", href: TRADEFOOX_IOS },
-    ],
-    featured: true,
-  },
-  {
-    title: "NX Monorepo Architecture",
-    subtitle: "Shared Codebase · Web & Mobile",
-    description:
-      "Scalable NX workspace powering TRADEFOOX — shared UI libraries, design tokens, and CI/CD pipelines delivering consistent experiences across web marketplace and mobile apps.",
-    gradient: "from-emerald-600/20 to-teal-600/10",
-    accent: "#10B981",
-    tech: ["NX", "React", "Next.js", "React Native", "TypeScript"],
-    github: null,
-    liveLinks: [{ label: "View Platform", href: TRADEFOOX_WEB }],
-    featured: false,
-  },
-];
-
-type Project = (typeof projects)[0];
+import { externalLinks, projects, type Project } from "@/lib/projects";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
@@ -80,7 +17,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileHover={{ y: -6 }}
       className="group glass-premium rounded-2xl overflow-hidden border border-border hover:border-border transition-all duration-400 flex flex-col"
     >
-      <div className={`relative h-44 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+      <div className={`relative h-44 bg-linear-to-br ${project.gradient} overflow-hidden`}>
         <div className="absolute inset-0 bg-grid-premium opacity-40" />
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -116,6 +53,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-border">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-foreground glass-premium rounded-lg hover:border-border transition-all"
+          >
+            Case Study
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
           {project.github && (
             <motion.a
               href={project.github}
@@ -174,7 +118,7 @@ export function Projects() {
           className="mt-12 text-center"
         >
           <a
-            href="https://github.com/rakibroni"
+            href={externalLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground border border-border hover:border-border rounded-xl transition-all"
