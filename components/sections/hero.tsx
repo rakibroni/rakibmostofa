@@ -43,8 +43,8 @@ const socialLinks = [
 ];
 
 const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
+  initial: { y: 20 },
+  animate: { y: 0 },
 };
 
 export function Hero() {
@@ -68,7 +68,7 @@ export function Hero() {
       ref={heroRef}
       id="hero"
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+      className="relative min-h-screen flex items-center overflow-x-hidden bg-background"
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -92,14 +92,14 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 lg:pt-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          {/* Left column */}
-          <div className="order-2 lg:order-1">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 sm:pt-28 sm:pb-24 lg:pt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
+          {/* Left column — first on mobile so CTAs stay above the fold */}
+          <div className="order-1">
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-premium border border-border mb-8"
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-premium border border-border mb-6 sm:mb-8"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
@@ -171,9 +171,9 @@ export function Hero() {
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 sm:mb-10"
             >
-              {stats.map((stat, i) => (
+              {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   whileHover={{ y: -3, scale: 1.02 }}
@@ -191,13 +191,14 @@ export function Hero() {
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-3 mb-10"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8 sm:mb-10"
             >
               <motion.button
+                type="button"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white btn-gradient rounded-xl"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white btn-gradient rounded-xl"
               >
                 View My Projects
                 <ArrowRight className="w-4 h-4" />
@@ -208,17 +209,18 @@ export function Hero() {
                 whileTap={{ scale: 0.97 }}
                 href="/resume.pdf"
                 download
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
               </motion.a>
 
               <motion.button
+                type="button"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground glass-premium rounded-xl hover:border-border transition-all"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-foreground glass-premium rounded-xl hover:border-border transition-all"
               >
                 Let&apos;s Talk
               </motion.button>
@@ -248,13 +250,13 @@ export function Hero() {
           </div>
 
           {/* Right column — profile */}
-          <div className="order-1 lg:order-2 relative flex items-center justify-center mx-auto w-full min-h-[380px] lg:min-h-[480px] lg:min-w-[480px]">
+          <div className="order-2 relative flex flex-col items-center justify-center mx-auto w-full min-h-[240px] sm:min-h-[320px] lg:min-h-[480px] lg:min-w-[480px]">
             {/* Radial glow behind photo */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.2)_0%,rgba(139,92,246,0.12)_40%,transparent_70%)] blur-2xl" />
             </div>
 
-            {/* Floating tech badges */}
+            {/* Floating tech badges — desktop */}
             <div className="absolute inset-0 hidden lg:flex items-center justify-center pointer-events-none">
               {techBadges.map((tech, i) => (
                 <motion.div
@@ -288,13 +290,13 @@ export function Hero() {
 
             {/* Profile photo */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{ rotateX, rotateY }}
-              className="relative z-10 w-52 h-52 sm:w-60 sm:h-60 lg:w-64 lg:h-64"
+              className="relative z-10 w-44 h-44 sm:w-60 sm:h-60 lg:w-64 lg:h-64"
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-xl scale-110" />
+              <div className="absolute inset-0 rounded-full bg-linear-to-br from-primary/20 to-secondary/20 blur-xl scale-110" />
               <div className="absolute inset-[6%] rounded-full overflow-hidden border-2 border-border shadow-[0_0_60px_rgba(59,130,246,0.2)]">
                 <Image
                   src="/profile.jpg"
@@ -306,6 +308,21 @@ export function Hero() {
                 />
               </div>
             </motion.div>
+
+            <div className="relative z-10 mt-6 grid grid-cols-3 gap-2 w-full max-w-sm mx-auto lg:hidden">
+              {techBadges.slice(0, 6).map((tech) => (
+                <div
+                  key={tech.name}
+                  className="rounded-lg glass-premium glow-border px-2 py-2.5 flex flex-col items-center justify-center gap-1"
+                  style={{ boxShadow: `0 4px 16px ${tech.color}18` }}
+                >
+                  <span className="text-sm leading-none">{tech.symbol}</span>
+                  <span className="text-[9px] font-medium text-muted-foreground text-center leading-tight">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -314,7 +331,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3"
         >
           <span className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             Scroll to Explore
