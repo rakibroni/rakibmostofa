@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -22,9 +23,11 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
+    const mountedFrame = window.requestAnimationFrame(() => setMounted(true));
     const handleScroll = () => {
       setScrolled(window.scrollY > 16);
       const sections = navLinks.map((l) => l.href.slice(1));
@@ -37,11 +40,19 @@ export function Navbar() {
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.cancelAnimationFrame(mountedFrame);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
+
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -59,7 +70,7 @@ export function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 lg:h-[4.5rem]">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 lg:h-18">
             {/* Logo */}
             <Link
               href="/"

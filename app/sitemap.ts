@@ -1,33 +1,27 @@
 import { MetadataRoute } from "next";
+import { projects, siteUrl } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rakibmostofa.dev";
   const lastModified = new Date();
 
   return [
     {
-      url: baseUrl,
+      url: siteUrl,
       lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/#about`,
+      url: `${siteUrl}/projects`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified,
-      changeFrequency: "weekly",
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/#contact`,
+    ...projects.map((project) => ({
+      url: `${siteUrl}/projects/${project.slug}`,
       lastModified,
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
+      changeFrequency: "monthly" as const,
+      priority: project.featured ? 0.85 : 0.75,
+    })),
   ];
 }
