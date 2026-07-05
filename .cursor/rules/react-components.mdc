@@ -1,0 +1,51 @@
+---
+description: React and Next.js component patterns for this portfolio
+globs: "{components,app}/**/*.{tsx,jsx}"
+alwaysApply: false
+---
+
+# React Component Patterns
+
+## Server vs client
+
+```tsx
+// ✅ Server component (default) — no directive, no hooks
+export function StaticBlock() {
+  return <section>...</section>;
+}
+
+// ✅ Client component — interactivity, hooks, Framer Motion
+"use client";
+export function AnimatedBlock() { ... }
+```
+
+Add `"use client"` only when the component uses hooks, browser APIs, or Framer Motion.
+
+## Section structure
+
+Follow existing sections (e.g. `contact.tsx`, `about.tsx`):
+
+- Import `SectionHeading` for titles
+- Use Framer Motion `motion.*` with `initial` / `whileInView` / `viewport={{ once: true }}`
+- Keep section `id` attributes stable for navbar links
+
+## Animations
+
+```tsx
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+};
+```
+
+Prefer subtle motion. Use `useSpring` / `useTransform` sparingly (see `hero.tsx`).
+
+## Images
+
+Use `next/image` with explicit `width`, `height`, and meaningful `alt` text.
+
+## Forms
+
+- Client-side: controlled state or react-hook-form
+- Submit to `/api/contact` via `fetch`
+- Show feedback with `sonner` toasts (`toast.success`, `toast.error`)

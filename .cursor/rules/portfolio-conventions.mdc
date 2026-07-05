@@ -1,0 +1,37 @@
+---
+description: Core conventions for the rakibmostofa portfolio site
+alwaysApply: true
+---
+
+# Portfolio Conventions
+
+## Scope
+
+Minimal, focused diffs. Match existing patterns in neighboring files before introducing new abstractions.
+
+## Imports & paths
+
+- Use `@/` alias (e.g. `@/components/ui/section-heading`).
+- Prefer named exports for section and UI components.
+
+## Styling
+
+- Tailwind CSS v4 with theme tokens from `app/globals.css` (`--background`, `--foreground`, `--primary`, etc.).
+- Merge classes with `cn()` from `@/lib/utils`.
+- Default theme is dark; ensure new UI works in both light and dark mode.
+
+## Data
+
+- Site URL, external links, and project records: `lib/projects.ts` only.
+- Do not scatter portfolio content across multiple files.
+
+## Sections
+
+- Homepage sections: `components/sections/*.tsx`, imported in `app/page.tsx`.
+- Use `SectionHeading` for consistent section titles.
+- Preserve navbar anchor IDs when editing section wrappers.
+
+## Dependencies
+
+- Package manager: **pnpm**.
+- Avoid adding libraries when existing stack (Framer Motion, Radix, lucide-react) already covers the need.

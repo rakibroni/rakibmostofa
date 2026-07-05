@@ -1,0 +1,49 @@
+---
+description: API route conventions for Next.js App Router handlers
+globs: app/api/**/*.ts
+alwaysApply: false
+---
+
+# API Route Conventions
+
+## Handler shape
+
+```typescript
+import { NextResponse } from "next/server";
+import { z } from "zod";
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const parsed = schema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message ?? "Invalid data" },
+        { status: 400 }
+      );
+    }
+    // ...
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Route error:", error);
+    return NextResponse.json({ error: "..." }, { status: 500 });
+  }
+}
+```
+
+## Validation
+
+- Validate all input with **zod** schemas.
+- Return the first validation error message to the client (400).
+
+## Security
+
+- Escape user content before embedding in HTML emails (`escapeHtml` pattern in `app/api/contact/route.ts`).
+- Honeypot fields: silently succeed on bot submissions (do not reveal detection).
+- Read secrets from `process.env`; never hardcode API keys.
+- Log server errors with `console.error`; return generic messages to clients.
+
+## Email (Resend)
+
+- Require `RESEND_API_KEY`; return 500 if missing.
+- Use env vars for `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` with sensible fallbacks only in development.
