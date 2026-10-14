@@ -3,6 +3,11 @@ export const siteUrl = "https://rakibmostofa.dev";
 export const externalLinks = {
   github: "https://github.com/rakibroni",
   linkedin: "https://www.linkedin.com/in/md-rakib-mostofa/",
+  medium: "https://medium.com/@rakibmostofa",
+  email: "mailto:rakibronicse@gmail.com",
+  location: "https://maps.google.com/?q=Chemnitz,Germany",
+  cvEnglish: "/Md_Rakib_Mostofa_CV.pdf",
+  cvGerman: "/Md_Rakib_Mostofa_Lebenslauf.pdf",
   tradefooxAndroid:
     "https://play.google.com/store/apps/details?id=app.tradefoox.mobile&hl=en",
   tradefooxIos:
@@ -22,88 +27,64 @@ export type Project = {
   liveLinks: { label: string; href: string }[];
   featured: boolean;
   overview: string[];
-  highlights: string[];
-  architecture: string[];
-  challenges: string[];
+  role: string[];
+  keyContributions: string[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "tradefoox-mobile",
-    title: "TRADEFOOX Mobile",
-    subtitle: "Community & Marketplace - 1M+ Downloads",
-    description:
-      "Production React Native app for Tradefoox GmbH with community feeds, short-form video, classifieds, messaging, push notifications, and multilingual support on iOS and Android.",
-    gradient: "from-blue-600/20 to-indigo-600/10",
-    accent: "#3B82F6",
-    tech: ["React Native", "Redux Toolkit", "TypeScript", "RTK Query", "NX"],
-    github: null,
-    liveLinks: [
-      { label: "Google Play", href: externalLinks.tradefooxAndroid },
-      { label: "App Store", href: externalLinks.tradefooxIos },
-    ],
-    featured: true,
-    overview: [
-      "TRADEFOOX Mobile brings marketplace, social community, and video discovery workflows into a single cross-platform application.",
-      "The app supports user profiles, offer browsing, media-rich feeds, messaging flows, push notifications, and multilingual product experiences for iOS and Android users.",
-    ],
-    highlights: [
-      "Cross-platform mobile app shipped to Google Play and the App Store.",
-      "Community, video, marketplace, and messaging features in one production product.",
-      "Shared TypeScript patterns and API access through RTK Query.",
-    ],
-    architecture: [
-      "React Native UI composed from reusable feature modules.",
-      "Redux Toolkit and RTK Query for predictable client state and API caching.",
-      "NX workspace foundations for sharing code between mobile and web surfaces.",
-    ],
-    challenges: [
-      "Keeping marketplace and social experiences consistent across iOS and Android.",
-      "Managing media-heavy screens while preserving responsive interactions.",
-      "Coordinating app store delivery with a fast-moving product roadmap.",
-    ],
-  },
-  {
     slug: "tradefoox-marketplace",
     title: "TRADEFOOX Marketplace",
-    subtitle: "Web E-Commerce Platform",
+    subtitle: "Marketplace Web Application",
     description:
-      "Full-featured marketplace on tradefoox.com with product listings, advanced search, category browsing, and a seamless buy and sell experience integrated with the community platform.",
+      "A production marketplace web application covering seller profiles, listings, search, authentication, Stripe Connect, and SEO-ready Next.js pages.",
     gradient: "from-violet-600/20 to-purple-600/10",
     accent: "#8B5CF6",
-    tech: ["Next.js", "React", "Node.js", "PostgreSQL", "Docker"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "RTK Query",
+      "Go / Gin",
+      "NestJS",
+      "PostgreSQL",
+      "Elasticsearch",
+      "Stripe Connect",
+    ],
     github: null,
     liveLinks: [{ label: "Live Site", href: externalLinks.tradefooxWeb }],
     featured: true,
     overview: [
-      "TRADEFOOX Marketplace is the web commerce surface for browsing offers, discovering categories, and connecting product listings to the broader community platform.",
-      "The platform focuses on fast discovery, clear listing presentation, and reliable full-stack delivery for marketplace workflows.",
+      "TRADEFOOX Marketplace is the web commerce surface for seller profiles, product listings, search, and payment-related workflows within the broader TRADEFOOX product.",
+      "The application is being moved from a React SPA toward Next.js App Router pages, with attention to server rendering, routing, SEO, and maintainability.",
     ],
-    highlights: [
-      "Live marketplace experience for product discovery and category browsing.",
-      "Full-stack implementation across frontend, backend, database, and deployment concerns.",
-      "Integrated user journey between marketplace offers and community features.",
+    role: [
+      "As part of the SCC Group team, I contribute to frontend architecture, feature development, API integration, authentication, payment integrations, and production delivery. I did not build the TRADEFOOX platform on my own.",
     ],
-    architecture: [
-      "Next.js and React frontend for performant web experiences.",
-      "Node.js services backed by PostgreSQL data models.",
-      "Docker-based development and deployment workflows.",
-    ],
-    challenges: [
-      "Designing product discovery flows that stay usable as marketplace content grows.",
-      "Balancing SEO-friendly pages with interactive marketplace behavior.",
-      "Integrating commerce workflows with community-oriented product areas.",
+    keyContributions: [
+      "Developed seller profile, product, listing, and search experiences in Next.js and TypeScript.",
+      "Contributed to migrating React SPA functionality to the Next.js App Router, including server rendering, routing, and SEO readiness.",
+      "Integrated authentication and authorization with REST APIs backed by Go/Gin and NestJS services.",
+      "Worked with PostgreSQL and Elasticsearch-backed marketplace and search functionality.",
+      "Integrated Stripe Connect onboarding and checkout-related marketplace workflows.",
     ],
   },
   {
-    slug: "tradefoox-community",
-    title: "TRADEFOOX Community",
-    subtitle: "Social Network & Video Platform",
+    slug: "tradefoox-mobile",
+    title: "TRADEFOOX Mobile",
+    subtitle: "React Native Social & Marketplace App",
     description:
-      "Cross-platform social experience with activity feeds, reels, user profiles, real-time interaction, and media uploads powering an active community across web and mobile.",
-    gradient: "from-rose-600/20 to-pink-600/10",
-    accent: "#EC4899",
-    tech: ["React Native", "Next.js", "RTK Query", "WebSockets", "Expo"],
+      "A production React Native application combining social and marketplace functionality with authentication, state management, and API integration.",
+    gradient: "from-blue-600/20 to-indigo-600/10",
+    accent: "#3B82F6",
+    tech: [
+      "React Native",
+      "TypeScript",
+      "Redux Toolkit",
+      "RTK Query",
+      "Firebase",
+      "REST APIs",
+    ],
     github: null,
     liveLinks: [
       { label: "Google Play", href: externalLinks.tradefooxAndroid },
@@ -111,55 +92,54 @@ export const projects: Project[] = [
     ],
     featured: true,
     overview: [
-      "TRADEFOOX Community connects users through feeds, short-form media, profiles, and real-time interactions across mobile and web experiences.",
-      "The product combines social discovery with marketplace context, helping users move between content, people, and offers.",
+      "TRADEFOOX Mobile brings social networking and marketplace workflows into one cross-platform product for iOS and Android.",
+      "The app covers user-facing flows such as authentication, profiles, listings, and API-backed product features rather than a standalone consumer clone.",
     ],
-    highlights: [
-      "Activity feeds, reels, profiles, and media upload workflows.",
-      "Shared web and mobile product thinking across Next.js and React Native.",
-      "Real-time interaction patterns for a responsive community experience.",
+    role: [
+      "I contribute to the mobile product using React Native and TypeScript, working across user-facing features, authentication, state management, API integration, and production delivery as part of the SCC Group team.",
     ],
-    architecture: [
-      "React Native and Next.js clients sharing product concepts and API contracts.",
-      "RTK Query for normalized API consumption and cache management.",
-      "WebSocket-enabled interaction patterns where real-time feedback matters.",
-    ],
-    challenges: [
-      "Making media-heavy community screens feel responsive on different devices.",
-      "Keeping social features aligned across web and mobile entry points.",
-      "Connecting community activity to marketplace discovery without cluttering the UI.",
+    keyContributions: [
+      "Developed social and marketplace functionality with reusable React Native components.",
+      "Implemented authentication, session handling, token refresh, and authorization flows.",
+      "Integrated REST APIs with Redux Toolkit and RTK Query for client state and caching.",
+      "Worked with Firebase-backed push notifications and other third-party mobile services.",
     ],
   },
   {
-    slug: "nx-monorepo-architecture",
-    title: "NX Monorepo Architecture",
-    subtitle: "Shared Codebase - Web & Mobile",
+    slug: "tradefoox-community",
+    title: "TRADEFOOX Social Platform",
+    subtitle: "Feeds, Profiles & Marketplace Integration",
     description:
-      "Scalable NX workspace powering TRADEFOOX with shared UI libraries, design tokens, and CI/CD pipelines delivering consistent experiences across web marketplace and mobile apps.",
-    gradient: "from-emerald-600/20 to-teal-600/10",
-    accent: "#10B981",
-    tech: ["NX", "React", "Next.js", "React Native", "TypeScript"],
+      "Social networking functionality across web and mobile, including feeds, profiles, authentication, and marketplace integration.",
+    gradient: "from-rose-600/20 to-pink-600/10",
+    accent: "#EC4899",
+    tech: [
+      "React",
+      "Next.js",
+      "React Native",
+      "TypeScript",
+      "Redux Toolkit",
+      "RTK Query",
+      "REST APIs",
+    ],
     github: null,
-    liveLinks: [{ label: "View Platform", href: externalLinks.tradefooxWeb }],
-    featured: false,
+    liveLinks: [
+      { label: "Google Play", href: externalLinks.tradefooxAndroid },
+      { label: "App Store", href: externalLinks.tradefooxIos },
+    ],
+    featured: true,
     overview: [
-      "The NX monorepo architecture supports multiple TRADEFOOX applications while keeping shared TypeScript code, product conventions, and delivery workflows organized.",
-      "It creates a foundation for shipping web and mobile features with less duplication and more consistent behavior across product surfaces.",
+      "TRADEFOOX Social Platform connects feeds, profiles, and user interactions with marketplace discovery across web and mobile.",
+      "The work sits inside the same production product as the marketplace and mobile apps, sharing authentication and API contracts.",
     ],
-    highlights: [
-      "Shared codebase for web and mobile product development.",
-      "Reusable libraries for UI, data access, and product conventions.",
-      "Workspace structure designed for scalable team delivery.",
+    role: [
+      "I contribute to frontend and mobile features across React, Next.js, and React Native, including shared authentication, state management, and API integration.",
     ],
-    architecture: [
-      "NX workspace coordinating React, Next.js, and React Native packages.",
-      "Shared TypeScript libraries for reusable product logic.",
-      "CI/CD workflows structured around affected projects and repeatable builds.",
-    ],
-    challenges: [
-      "Keeping shared abstractions useful without slowing product teams down.",
-      "Maintaining clear ownership boundaries between app-specific and shared code.",
-      "Supporting multiple deployment targets from one workspace.",
+    keyContributions: [
+      "Developed feed and profile interfaces across web and mobile.",
+      "Integrated authentication and authorization flows shared across product surfaces.",
+      "Used Redux Toolkit and RTK Query for state management and REST API access.",
+      "Connected social interactions with marketplace journeys while keeping interfaces maintainable.",
     ],
   },
 ];

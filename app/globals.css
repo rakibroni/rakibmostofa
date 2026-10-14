@@ -70,6 +70,15 @@
     overflow-x: hidden;
   }
 
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  :where(a, button, input, textarea, select):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+
   ::selection {
     background: rgba(59, 130, 246, 0.35);
     color: inherit;
@@ -252,5 +261,20 @@
   100% {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

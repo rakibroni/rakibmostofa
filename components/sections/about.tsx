@@ -7,18 +7,18 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const highlights = [
   {
     icon: GraduationCap,
-    title: "Master's in Automotive Software Engineering",
-    description: "Technische Universität Chemnitz, Germany — merging software excellence with automotive innovation.",
+    title: "M.Sc. Automotive Software Engineering",
+    description: "Completed at Technische Universität Chemnitz.",
   },
   {
     icon: Globe,
-    title: "Global Product Experience",
-    description: "Marketplace and social networking applications used by thousands of users worldwide.",
+    title: "Production Product Experience",
+    description: "Marketplace, social networking, enterprise, and cross-platform mobile applications.",
   },
   {
     icon: Code2,
-    title: "Clean Architecture Advocate",
-    description: "SOLID principles, scalable patterns, and performance-first development across the full stack.",
+    title: "Frontend to Delivery",
+    description: "Architecture, APIs, authentication, payments, performance, and production delivery.",
   },
 ];
 
@@ -30,8 +30,8 @@ export function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="About"
-          title="Building Products That Matter"
-          subtitle="Full-stack engineer with 5+ years of experience shipping scalable web and mobile applications."
+          title="Product Engineering, Frontend First"
+          subtitle="Building reliable web and mobile products across the frontend, backend, and delivery lifecycle."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -43,17 +43,35 @@ export function About() {
             className="space-y-5 text-muted-foreground leading-relaxed text-base"
           >
             <p>
-              I&apos;m <span className="text-foreground font-semibold">Md Rakib Mostofa</span>, a Full Stack
-              Developer based in <span className="text-primary font-medium">Chemnitz, Germany</span>.
-              I specialize in React, React Native, Next.js, and Node.js — building products that scale.
+              I&apos;m <span className="text-foreground font-semibold">Md Rakib Mostofa</span>, a
+              Frontend-Focused Full-Stack / Product Engineer based in{" "}
+              <span className="text-primary font-medium">Chemnitz, Germany</span>.
             </p>
             <p>
-              My work spans marketplace platforms, cross-platform mobile apps, and enterprise web
-              applications. I care deeply about clean architecture, performance, and pixel-perfect UI.
+              I specialize in building scalable web and mobile applications using
+              React, Next.js, React Native, TypeScript and Node.js. My professional
+              experience spans marketplace platforms, social networking applications,
+              enterprise software and cross-platform mobile development.
             </p>
             <p>
-              Currently pursuing my Master&apos;s in Automotive Software Engineering while delivering
-              production-grade software for clients and companies worldwide.
+              At SCC Group, I work on the TRADEFOOX platform, contributing to its
+              marketplace, social networking features and mobile applications. My
+              responsibilities include frontend architecture, API integration,
+              authentication and authorization, payment integrations, performance
+              optimization and production delivery.
+            </p>
+            <p>
+              I have hands-on experience with NestJS, Go, PostgreSQL, Elasticsearch,
+              Stripe Connect, Docker and CI/CD pipelines.
+            </p>
+            <p>
+              I hold a Master of Science in Automotive Software Engineering from
+              Technische Universität Chemnitz.
+            </p>
+            <p>
+              I&apos;m interested in technically challenging product engineering roles
+              where I can contribute to reliable, scalable software while continuing
+              to grow as an engineer.
             </p>
           </motion.div>
 

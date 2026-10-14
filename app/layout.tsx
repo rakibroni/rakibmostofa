@@ -26,14 +26,15 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Md Rakib Mostofa | Full Stack Developer | Next.js, React & AI Engineer",
+    default: "Md Rakib Mostofa | Full-Stack Engineer | React, Next.js & React Native",
     template: "%s | Md Rakib Mostofa",
   },
   description:
-    "Full Stack Developer specializing in Next.js, React, React Native, TypeScript, Node.js, and AI-powered web applications. Based in Chemnitz, Germany.",
+    "Md Rakib Mostofa is a Full-Stack Software Engineer based in Chemnitz, Germany, specializing in React, Next.js, React Native, TypeScript and scalable web and mobile applications.",
   keywords: [
     "Md Rakib Mostofa",
-    "Full-Stack Developer",
+    "Frontend-Focused Full-Stack Engineer",
+    "Product Engineer",
     "Software Engineer",
     "React",
     "Next.js",
@@ -41,37 +42,36 @@ export const metadata: Metadata = {
     "Node.js",
     "NestJS",
     "TypeScript",
-    "AI Engineer",
     "Germany",
     "Chemnitz",
     "Web Developer",
     "Mobile Developer",
   ],
-  authors: [{ name: "Md Rakib Mostofa", url: "https://rakibmostofa.dev" }],
+  authors: [{ name: "Md Rakib Mostofa", url: siteUrl }],
   creator: "Md Rakib Mostofa",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: "Md Rakib Mostofa Portfolio",
-    title: "Md Rakib Mostofa | Full Stack Developer | Next.js, React & AI Engineer",
+    title: "Md Rakib Mostofa | Full-Stack Engineer | React, Next.js & React Native",
     description:
-      "Full Stack Developer specializing in Next.js, React, React Native, TypeScript, and Node.js. Building scalable applications with clean architecture.",
+      "Md Rakib Mostofa is a Full-Stack Software Engineer based in Chemnitz, Germany, specializing in React, Next.js, React Native, TypeScript and scalable web and mobile applications.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Md Rakib Mostofa - Full-Stack Software Engineer",
+        alt: "Md Rakib Mostofa - Frontend-Focused Full-Stack and Product Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Md Rakib Mostofa | Full Stack Developer | Next.js, React & AI Engineer",
+    title: "Md Rakib Mostofa | Full-Stack Engineer | React, Next.js & React Native",
     description:
-      "Full Stack Developer specializing in Next.js, React, React Native, TypeScript, and Node.js.",
-    images: ["/og-image.png"],
+      "Md Rakib Mostofa is a Full-Stack Software Engineer based in Chemnitz, Germany, specializing in React, Next.js, React Native, TypeScript and scalable web and mobile applications.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -106,13 +106,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <JsonLd />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -121,7 +127,7 @@ export default function RootLayout({
         >
           <ScrollProgress />
           <Navbar />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
           <BackToTop />
           <Toaster

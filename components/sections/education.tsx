@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Award, Languages } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const education = [
@@ -10,19 +10,10 @@ const education = [
     field: "Automotive Software Engineering",
     institution: "Technische Universität Chemnitz",
     location: "Chemnitz, Germany",
-    period: "2021 – 2024",
-    current: true,
-    grade: "Successfully Completed",
+    period: "2019 – 2024",
+    status: "Completed",
     description:
-      "Pursuing advanced studies at the intersection of automotive systems and software engineering. Covering embedded systems, AUTOSAR, functional safety (ISO 26262), and modern software architectures for connected vehicles.",
-    courses: [
-      "Embedded Systems",
-      "AUTOSAR Architecture",
-      "Functional Safety",
-      "Software Testing",
-      "Connected Vehicles",
-      "Real-time Systems",
-    ],
+      "Master's degree focused on the intersection of software engineering and automotive systems.",
     gradient: "from-primary to-accent",
     icon: "🎓",
     color: "text-primary",
@@ -31,22 +22,13 @@ const education = [
   },
   {
     degree: "Bachelor of Science",
-    field: "Computer Science & Engineering",
-    institution: "University of Bangladesh",
-    location: "Bangladesh",
-    period: "2015 – 2019",
-    current: false,
-    grade: "Successfully Completed",
+    field: "Computer Science / Informatics and Technology",
+    institution: "University of Information Technology and Sciences",
+    location: "Dhaka, Bangladesh",
+    period: "2010 – 2014",
+    status: "Completed",
     description:
-      "Completed a comprehensive computer science program with focus on algorithms, data structures, software engineering principles, database management, and full-stack web development.",
-    courses: [
-      "Data Structures & Algorithms",
-      "Database Management",
-      "Software Engineering",
-      "Operating Systems",
-      "Computer Networks",
-      "OOP & Design Patterns",
-    ],
+      "Bachelor's degree providing a foundation in computer science, software engineering, and information technology.",
     gradient: "from-purple-500 to-pink-500",
     icon: "📚",
     color: "text-purple-500",
@@ -55,31 +37,10 @@ const education = [
   },
 ];
 
-const certifications = [
-  {
-    name: "React Advanced Patterns",
-    issuer: "Frontend Masters",
-    year: "2023",
-    icon: "⚛",
-  },
-  {
-    name: "Node.js Application Development",
-    issuer: "Linux Foundation",
-    year: "2022",
-    icon: "🟢",
-  },
-  {
-    name: "Docker & Kubernetes",
-    issuer: "Docker Inc.",
-    year: "2022",
-    icon: "🐳",
-  },
-  {
-    name: "TypeScript Pro",
-    issuer: "Microsoft Learn",
-    year: "2021",
-    icon: "TS",
-  },
+const languages = [
+  { language: "Bengali", level: "Native" },
+  { language: "English", level: "Fluent" },
+  { language: "German", level: "B2" },
 ];
 
 export function Education() {
@@ -90,8 +51,8 @@ export function Education() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Education"
-          title="Academic Background"
-          subtitle="Strong foundation in computer science combined with specialized automotive software expertise."
+          title="Education & Languages"
+          subtitle="Academic foundation and language skills relevant to international product teams in Germany."
         />
 
         {/* Education Cards */}
@@ -127,11 +88,6 @@ export function Education() {
                       >
                         {edu.degree}
                       </span>
-                      {edu.current && (
-                        <span className="px-2 py-0.5 text-[10px] font-medium bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
-                          Current
-                        </span>
-                      )}
                     </div>
                     <h3 className="text-xl font-bold leading-tight">
                       {edu.field}
@@ -154,7 +110,7 @@ export function Education() {
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Award className="w-3.5 h-3.5" />
-                    {edu.grade}
+                    {edu.status}
                   </span>
                 </div>
               </div>
@@ -163,53 +119,33 @@ export function Education() {
                 {edu.description}
               </p>
 
-              {/* Key courses */}
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                  Key Courses
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {edu.courses.map((course) => (
-                    <span
-                      key={course}
-                      className={`px-2.5 py-1 text-xs font-medium ${edu.badgeBg} ${edu.color} rounded-lg border ${edu.borderColor}`}
-                    >
-                      {course}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Certifications */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h3 className="text-2xl font-bold text-center mb-8">
-            Certifications & Courses
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {certifications.map((cert, i) => (
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Languages className="w-5 h-5 text-primary" />
+            <h3 className="text-2xl font-bold">Languages</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {languages.map((item, i) => (
               <motion.div
-                key={cert.name}
+                key={item.language}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                whileHover={{ scale: 1.04, y: -4 }}
-                className="glass rounded-xl p-5 border border-border text-center cursor-default group"
+                whileHover={{ y: -3 }}
+                className="glass rounded-xl p-5 border border-border text-center"
               >
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
-                  {cert.icon}
-                </div>
-                <h4 className="font-semibold text-sm mb-1">{cert.name}</h4>
-                <p className="text-xs text-primary mb-1">{cert.issuer}</p>
-                <p className="text-xs text-muted-foreground">{cert.year}</p>
+                <h4 className="font-semibold text-foreground">{item.language}</h4>
+                <p className="text-sm text-primary mt-1">{item.level}</p>
               </motion.div>
             ))}
           </div>

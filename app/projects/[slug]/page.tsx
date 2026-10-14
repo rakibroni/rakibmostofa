@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ExternalLink } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getProjectBySlug, projects, siteUrl } from "@/lib/projects";
 
@@ -35,7 +35,7 @@ export async function generateMetadata({
     keywords: [
       project.title,
       "Md Rakib Mostofa",
-      "Full Stack Developer",
+      "Frontend-Focused Full-Stack Engineer",
       ...project.tech,
     ],
     alternates: {
@@ -78,6 +78,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     },
     keywords: project.tech.join(", "),
     sameAs: project.liveLinks.map((link) => link.href),
+    mainEntityOfPage: projectUrl,
   };
 
   return (
@@ -121,9 +122,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-start">
             <div className="space-y-8">
               <ProjectSection title="Overview" items={project.overview} />
-              <ProjectSection title="Technical Highlights" items={project.highlights} />
-              <ProjectSection title="Architecture" items={project.architecture} />
-              <ProjectSection title="Challenges" items={project.challenges} />
+              <ProjectSection title="My Role" items={project.role} />
+              <ProjectSection title="Key Contributions" items={project.keyContributions} asList />
             </div>
 
             <aside className="glass-premium rounded-2xl border border-border p-6 lg:sticky lg:top-24">
@@ -163,17 +163,36 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   );
 }
 
-function ProjectSection({ title, items }: { title: string; items: string[] }) {
+function ProjectSection({
+  title,
+  items,
+  asList = false,
+}: {
+  title: string;
+  items: string[];
+  asList?: boolean;
+}) {
   return (
     <section className="glass-premium rounded-2xl border border-border p-6 md:p-8">
       <h2 className="text-2xl font-bold tracking-tight text-foreground mb-5">
         {title}
       </h2>
-      <div className="space-y-4 text-muted-foreground leading-relaxed">
-        {items.map((item) => (
-          <p key={item}>{item}</p>
-        ))}
-      </div>
+      {asList ? (
+        <ul className="space-y-3">
+          {items.map((item) => (
+            <li key={item} className="flex items-start gap-2.5 text-muted-foreground leading-relaxed">
+              <CheckCircle2 className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="space-y-4 text-muted-foreground leading-relaxed">
+          {items.map((item) => (
+            <p key={item}>{item}</p>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

@@ -6,19 +6,22 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const experiences = [
   {
-    role: "Frontend Developer",
+    role: "Frontend / Full-Stack Developer",
     company: "SCC Group",
     location: "Chemnitz, Germany",
-    period: "04/2024 – Present",
+    period: "April 2024 – Present",
     current: true,
     responsibilities: [
-      "Developed and maintained React.js, React Native, and Next.js applications, enhancing UI/UX",
-      "Integrated RESTful APIs using Golang (Gin framework), supporting 10,000+ concurrent users",
-      "Optimized Redux Toolkit & RTK Query, reducing API latency by 30%",
-      "Designed responsive UIs with Tailwind CSS & Bootstrap, improving usability by 25%",
-      "Improved CI/CD pipeline configurations and contributed to Dockerized deployments",
+      "Develop and maintain production web and mobile applications using React, Next.js, React Native, and TypeScript",
+      "Contribute to marketplace and social-network functionality across the TRADEFOOX product",
+      "Contribute to migrating React SPA functionality to the Next.js App Router, including server rendering, routing, SEO, and maintainability",
+      "Develop and integrate authentication flows across web and mobile, including session management, token refresh, and authorization",
+      "Integrate seller profiles, product and listing flows, search, and Stripe Connect functionality",
+      "Work with REST APIs backed by Go/Gin and NestJS services, including PostgreSQL and Elasticsearch-backed functionality",
+      "Integrate and troubleshoot GA4, Google Ads/AdMob, Firebase, and other third-party services",
+      "Contribute to GitHub Actions, CI/CD workflows, and Docker-based deployments",
     ],
-    tech: ["React", "React Native", "Next.js", "Go", "Redux Toolkit", "RTK Query", "Tailwind CSS", "Docker"],
+    tech: ["React", "Next.js", "React Native", "TypeScript", "Go / Gin", "NestJS", "PostgreSQL", "Elasticsearch", "Stripe Connect", "Docker"],
   },
   {
     role: "Full-Stack Developer",
@@ -27,10 +30,9 @@ const experiences = [
     period: "02/2022 – 10/2023",
     current: false,
     responsibilities: [
-      "Built new features & resolved bugs for an email marketing platform, improving functionality",
-      "Developed and maintained dynamic microsite & landing pages, enhancing marketing campaigns",
-      "Reduced support tickets by 15% by documenting troubleshooting techniques",
-      "Collaborated in an Agile team of 8, ensuring timely project delivery",
+      "Developed features and resolved defects for an email marketing platform",
+      "Built and maintained microsites and landing pages for marketing campaigns",
+      "Documented troubleshooting approaches and collaborated within an Agile team",
     ],
     tech: ["React", "Next.js", "TypeScript", "Node.js", "Agile", "Email Marketing"],
   },
@@ -41,9 +43,9 @@ const experiences = [
     period: "09/2021 – 02/2022",
     current: false,
     responsibilities: [
-      "Assisted in the development & optimization of a career platform, improving performance",
-      "Ensured secure administration & processing of user data, following GDPR standards",
-      "Contributed to project planning & implementation, collaborating with cross-functional teams",
+      "Supported the development and optimization of a career platform",
+      "Handled user data in GDPR-aware development workflows",
+      "Contributed to implementation and planning with cross-functional team members",
     ],
     tech: ["React", "Node.js", "TypeScript", "GDPR", "PostgreSQL"],
   },
@@ -54,11 +56,10 @@ const experiences = [
     period: "01/2015 – 03/2019",
     current: false,
     responsibilities: [
-      "Developed scalable backend services and APIs using PHP and Node.js",
-      "Led and collaborated on projects, managing documentation and team coordination",
-      "Designed and implemented custom ERP solutions for 10,000+ users",
-      "Managed role-based access control (RBAC) for secure administration",
-      "Designed modules for admission, courses, exams, payments, inventory, HR, and library",
+      "Developed backend services and REST APIs using PHP and Node.js",
+      "Built ERP and enterprise application modules for admissions, courses, examinations, payments, inventory, HR, and library workflows",
+      "Implemented role-based access control (RBAC) for secure administration",
+      "Contributed to project coordination and technical documentation",
     ],
     tech: ["PHP", "Node.js", "MySQL", "ERP", "RBAC", "REST APIs"],
   },
@@ -73,11 +74,11 @@ export function Experience() {
         <SectionHeading
           label="Experience"
           title="Professional Journey"
-          subtitle="A timeline of growth — from junior developer to full-stack engineer building products at scale."
+          subtitle="Production experience across frontend architecture, full-stack development, and product delivery."
         />
 
         <div className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-white/10 to-transparent" />
+          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-transparent" />
 
           <div className="space-y-10">
             {experiences.map((exp, idx) => (
@@ -102,7 +103,7 @@ export function Experience() {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="text-lg font-bold text-foreground">{exp.role}</h3>
                         {exp.current && (
-                          <span className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider bg-emerald-500/15 text-emerald-400 rounded-full border border-emerald-500/20">
+                          <span className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 rounded-full border border-emerald-500/20">
                             Current
                           </span>
                         )}

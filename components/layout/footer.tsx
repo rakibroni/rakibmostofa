@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
@@ -8,7 +9,7 @@ import { externalLinks } from "@/lib/projects";
 
 const footerLinks = [
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
@@ -16,21 +17,12 @@ const footerLinks = [
 const socialLinks = [
   { icon: GithubIcon, href: externalLinks.github, label: "GitHub" },
   { icon: LinkedinIcon, href: externalLinks.linkedin, label: "LinkedIn" },
-  { icon: Mail, href: "mailto:rakibronicse@gmail.com", label: "Email" },
+  { icon: Mail, href: externalLinks.email, label: "Email" },
 ];
 
 export function Footer() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const scrollTo = (href: string) => {
-    if (pathname !== "/") {
-      router.push(`/${href}`);
-      return;
-    }
-
-    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
-  };
+  const getHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
     <footer className="relative border-t border-border bg-background overflow-hidden">
@@ -42,19 +34,21 @@ export function Footer() {
             </div>
             <div>
               <p className="font-semibold text-foreground text-sm">Rakib.dev</p>
-              <p className="text-xs text-muted-foreground">Full Stack Developer</p>
+              <p className="text-xs text-muted-foreground">
+                Frontend-Focused Full-Stack / Product Engineer
+              </p>
             </div>
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6">
             {footerLinks.map((link) => (
-              <button
+              <Link
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                href={getHref(link.href)}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </nav>
 

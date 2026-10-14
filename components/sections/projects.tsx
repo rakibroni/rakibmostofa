@@ -32,7 +32,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
         <div className="absolute bottom-4 left-6 right-6">
           <h3 className="text-xl font-bold text-white">{project.title}</h3>
-          <p className="text-sm text-foreground/60 mt-0.5">{project.subtitle}</p>
+          <p className="text-sm text-white/75 mt-0.5">{project.subtitle}</p>
         </div>
       </div>
 
@@ -102,11 +102,11 @@ export function Projects() {
         <SectionHeading
           label="Projects"
           title="Featured Work"
-          subtitle="Production applications built at Tradefoox GmbH — live on Google Play, App Store, and the web."
+          subtitle="Selected TRADEFOOX product areas I contribute to as part of the SCC Group team."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
+          {projects.filter((project) => project.featured).map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
@@ -117,15 +117,24 @@ export function Projects() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <a
-            href={externalLinks.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground border border-border hover:border-border rounded-xl transition-all"
-          >
-            View open source on GitHub
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-foreground border border-border hover:border-primary/40 rounded-xl transition-all"
+            >
+              All case studies
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={externalLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground border border-border hover:border-border rounded-xl transition-all"
+            >
+              GitHub
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

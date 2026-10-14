@@ -8,12 +8,9 @@ import {
   MapPin,
   Download,
   ArrowRight,
-  Briefcase,
-  Layers,
-  Cpu,
-  Sparkles,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, MediumIcon } from "@/components/ui/icons";
+import { externalLinks } from "@/lib/projects";
 
 const techBadges = [
   { name: "React", symbol: "⚛", color: "#61DAFB", px: 0, py: -168 },
@@ -25,21 +22,14 @@ const techBadges = [
   { name: "Redux", symbol: "◆", color: "#764ABC", px: 118, py: 118 },
   { name: "PostgreSQL", symbol: "🐘", color: "#336791", px: 0, py: 168 },
   { name: "Docker", symbol: "🐳", color: "#2496ED", px: -80, py: -40 },
-  { name: "AWS", symbol: "☁", color: "#FF9900", px: 80, py: -40 },
+  { name: "Go / Gin", symbol: "Go", color: "#00ADD8", px: 80, py: -40 },
 ] as const;
 
-const stats = [
-  { value: "5+", label: "Years Experience", icon: Briefcase },
-  { value: "40+", label: "Projects", icon: Layers },
-  { value: "20+", label: "Technologies", icon: Cpu },
-  { value: "Open", label: "For Work", icon: Sparkles },
-];
-
 const socialLinks = [
-  { icon: GithubIcon, href: "https://github.com/rakibroni", label: "GitHub" },
-  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/md-rakib-mostofa/", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:rakibronicse@gmail.com", label: "Email" },
-  { icon: MediumIcon, href: "https://medium.com/@rakibmostofa", label: "Medium" },
+  { icon: GithubIcon, href: externalLinks.github, label: "GitHub" },
+  { icon: LinkedinIcon, href: externalLinks.linkedin, label: "LinkedIn" },
+  { icon: Mail, href: externalLinks.email, label: "Email" },
+  { icon: MediumIcon, href: externalLinks.medium, label: "Medium" },
 ];
 
 const fadeUp = {
@@ -96,23 +86,9 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left column */}
           <div className="order-2 lg:order-1">
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-premium border border-border mb-8"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[13px] font-medium text-muted-foreground">
-                Available for Full-time & Freelance
-              </span>
-            </motion.div>
-
             <motion.p
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.05 }}
+              transition={{ duration: 0.6 }}
               className="text-muted-foreground text-lg mb-2"
             >
               Hi, I&apos;m
@@ -120,7 +96,7 @@ export function Hero() {
 
             <motion.h1
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold tracking-tight leading-[1.08] mb-4"
             >
               <span className="text-foreground">Md </span>
@@ -131,103 +107,85 @@ export function Hero() {
 
             <motion.p
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-xl sm:text-2xl font-semibold text-foreground mb-3"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-xl sm:text-2xl font-semibold text-foreground mb-4"
             >
-              Full Stack Developer
+              Frontend-Focused Full-Stack / Product Engineer
+            </motion.p>
+
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-base sm:text-lg text-foreground/90 font-medium mb-5 leading-relaxed max-w-xl"
+            >
+              Building scalable web and mobile applications with React, Next.js,
+              React Native, TypeScript and Node.js.
             </motion.p>
 
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-[15px] text-muted-foreground font-medium mb-6 leading-relaxed"
+              className="text-base text-muted-foreground leading-relaxed mb-6 max-w-xl"
             >
-              React Native • React • Next.js • Node.js • NestJS • TypeScript
+              I&apos;m a software engineer based in Chemnitz, Germany, specializing
+              in modern frontend architecture, full-stack development and
+              production-ready digital products. My experience includes marketplace
+              platforms, social networking applications, payment integrations,
+              authentication systems and cross-platform mobile development.
             </motion.p>
 
-            <motion.p
+            <motion.div
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-base text-muted-foreground leading-relaxed mb-6 max-w-lg"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground mb-9"
             >
-              I build scalable web and mobile applications with clean architecture,
-              exceptional user experiences, and high-performance solutions.
-            </motion.p>
-
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground mb-10"
-            >
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-primary" />
-                Germany
-              </span>
-              <span className="text-muted-foreground/40">|</span>
-              <span>Available Worldwide</span>
-            </motion.div>
-
-            {/* Trust indicators */}
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10"
-            >
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                  className="glass-premium glow-border rounded-xl p-4 cursor-default"
-                >
-                  <stat.icon className="w-4 h-4 text-primary mb-2 opacity-80" />
-                  <div className="text-xl font-bold text-foreground leading-none">{stat.value}</div>
-                  <div className="text-[11px] text-muted-foreground mt-1.5 leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
+              <MapPin className="w-4 h-4 text-primary" />
+              Chemnitz, Germany
             </motion.div>
 
             {/* CTAs */}
             <motion.div
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-3 mb-10"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap gap-3 mb-9"
             >
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                href="#projects"
                 className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white btn-gradient rounded-xl"
               >
-                View My Projects
+                View My Work
                 <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              </motion.a>
 
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                href="/resume.pdf"
+                href={externalLinks.cvEnglish}
                 download
                 className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all"
               >
                 <Download className="w-4 h-4" />
-                Download Resume
+                CV (English)
               </motion.a>
 
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground glass-premium rounded-xl hover:border-border transition-all"
+                href={externalLinks.cvGerman}
+                download
+                className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-muted/50 transition-all"
               >
-                Let&apos;s Talk
-              </motion.button>
+                <Download className="w-4 h-4" />
+                Lebenslauf (Deutsch)
+              </motion.a>
             </motion.div>
 
             {/* Social */}
             <motion.div
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.45 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
               className="flex items-center gap-3"
             >
               {socialLinks.map(({ icon: Icon, href, label }) => (
@@ -298,7 +256,7 @@ export function Hero() {
               <div className="absolute inset-[6%] rounded-full overflow-hidden border-2 border-border shadow-[0_0_60px_rgba(59,130,246,0.2)]">
                 <Image
                   src="/profile.jpg"
-                  alt="Md Rakib Mostofa - Full Stack Developer"
+                  alt="Md Rakib Mostofa, Frontend-Focused Full-Stack and Product Engineer"
                   fill
                   priority
                   sizes="(max-width: 640px) 208px, (max-width: 1024px) 240px, 256px"

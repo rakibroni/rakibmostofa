@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "GitHub", href: "#github" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -24,7 +24,6 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     const mountedFrame = window.requestAnimationFrame(() => setMounted(true));
@@ -46,15 +45,18 @@ export function Navbar() {
     };
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    if (pathname !== "/") {
-      router.push(`/${href}`);
-      return;
-    }
+  useEffect(() => {
+    if (!isOpen) return;
 
-    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
+
+  const getHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
     <>
@@ -73,8 +75,7 @@ export function Navbar() {
           <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 lg:h-18">
             {/* Logo */}
             <Link
-              href="/"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              href="/#hero"
               className="flex items-center gap-2.5 group justify-self-start"
             >
               <div className="w-9 h-9 rounded-lg bg-muted/60 border border-border flex items-center justify-center font-mono text-sm text-primary group-hover:border-primary/30 transition-colors">
@@ -86,11 +87,12 @@ export function Navbar() {
             </Link>
 
             {/* Center nav — desktop */}
-            <nav className="hidden lg:flex items-center gap-1 justify-self-center">
+            <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-1 justify-self-center">
               {navLinks.map((link) => (
-                <button
+                <Link
                   key={link.href}
-                  onClick={() => handleNavClick(link.href)}
+                  href={getHref(link.href)}
+                  aria-current={activeSection === link.href.slice(1) ? "location" : undefined}
                   className={cn(
                     "relative px-3.5 py-2 text-[13px] font-medium rounded-lg transition-colors duration-200",
                     activeSection === link.href.slice(1)
@@ -106,7 +108,7 @@ export function Navbar() {
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
-                </button>
+                </Link>
               ))}
             </nav>
 
@@ -134,19 +136,21 @@ export function Navbar() {
                 </motion.button>
               )}
 
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => handleNavClick("#contact")}
+                href={getHref("#contact")}
                 className="hidden sm:flex items-center px-4 py-2 text-[13px] font-medium text-white btn-gradient rounded-lg transition-shadow"
               >
-                Hire Me
-              </motion.button>
+                Contact
+              </motion.a>
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 aria-label="Toggle menu"
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
               >
                 {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -158,6 +162,7 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -166,12 +171,14 @@ export function Navbar() {
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link, i) => (
-                <motion.button
+                <motion.a
                   key={link.href}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04 }}
-                  onClick={() => handleNavClick(link.href)}
+                  href={getHref(link.href)}
+                  onClick={() => setIsOpen(false)}
+                  aria-current={activeSection === link.href.slice(1) ? "location" : undefined}
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                     activeSection === link.href.slice(1)
@@ -180,17 +187,18 @@ export function Navbar() {
                   )}
                 >
                   {link.label}
-                </motion.button>
+                </motion.a>
               ))}
-              <motion.button
+              <motion.a
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.04 }}
-                onClick={() => handleNavClick("#contact")}
+                href={getHref("#contact")}
+                onClick={() => setIsOpen(false)}
                 className="mt-2 w-full py-3 btn-gradient text-white text-sm font-medium rounded-lg"
               >
-                Hire Me
-              </motion.button>
+                Contact
+              </motion.a>
             </div>
           </motion.div>
         )}

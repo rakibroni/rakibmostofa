@@ -6,31 +6,32 @@ import { Mail, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { toast } from "sonner";
+import { externalLinks } from "@/lib/projects";
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
     value: "rakibronicse@gmail.com",
-    href: "mailto:rakibronicse@gmail.com",
+    href: externalLinks.email,
   },
   {
     icon: LinkedinIcon,
     label: "LinkedIn",
     value: "/in/md-rakib-mostofa",
-    href: "https://www.linkedin.com/in/md-rakib-mostofa/",
+    href: externalLinks.linkedin,
   },
   {
     icon: GithubIcon,
     label: "GitHub",
     value: "/rakibroni",
-    href: "https://github.com/rakibroni",
+    href: externalLinks.github,
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Chemnitz, Germany",
-    href: "https://maps.google.com/?q=Chemnitz,Germany",
+    href: externalLinks.location,
   },
 ];
 
@@ -115,8 +116,8 @@ export function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Contact"
-          title="Let's Build Something Amazing Together"
-          subtitle="Have a project in mind or want to discuss opportunities? I'd love to hear from you."
+          title="Get in Touch"
+          subtitle="Interested in working together or discussing a software engineering opportunity? Feel free to get in touch."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -152,12 +153,12 @@ export function Contact() {
             </div>
 
             <motion.a
-              href="mailto:rakibronicse@gmail.com"
+              href={externalLinks.email}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white btn-gradient rounded-xl"
             >
-              Let&apos;s Build Something Amazing Together
+              Email Me
               <ArrowRight className="w-5 h-5" />
             </motion.a>
           </motion.div>
@@ -168,9 +169,11 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-premium rounded-2xl p-8 border border-border space-y-5">
+            <form onSubmit={handleSubmit} className="relative glass-premium rounded-2xl p-8 border border-border space-y-5">
               <h3 className="text-lg font-bold text-foreground mb-1">Send a Message</h3>
-              <p className="text-sm text-muted-foreground mb-4">I typically respond within 24 hours.</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Share a role, product challenge, or collaboration opportunity.
+              </p>
 
               {/* Honeypot — hidden from users, catches bots */}
               <input
@@ -186,38 +189,60 @@ export function Contact() {
 
               {(["name", "email", "subject"] as const).map((field) => (
                 <div key={field}>
-                  <label className="block text-sm font-medium text-foreground mb-2 capitalize">
+                  <label
+                    htmlFor={`contact-${field}`}
+                    className="block text-sm font-medium text-foreground mb-2 capitalize"
+                  >
                     {field} <span className="text-red-400">*</span>
                   </label>
                   <input
+                    id={`contact-${field}`}
                     type={field === "email" ? "email" : "text"}
                     name={field}
+                    required
+                    maxLength={field === "subject" ? 200 : 100}
                     value={formData[field]}
                     onChange={handleChange}
-                    placeholder={field === "email" ? "you@example.com" : field === "subject" ? "Project inquiry" : "Your name"}
+                    placeholder={field === "email" ? "you@example.com" : field === "subject" ? "Software engineering opportunity" : "Your name"}
+                    aria-invalid={Boolean(errors[field])}
+                    aria-describedby={errors[field] ? `contact-${field}-error` : undefined}
                     className={`w-full px-4 py-3 rounded-xl bg-muted/40 border ${
                       errors[field] ? "border-red-500/50" : "border-border"
                     } text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm`}
                   />
-                  {errors[field] && <p className="mt-1 text-xs text-red-400">{errors[field]}</p>}
+                  {errors[field] && (
+                    <p id={`contact-${field}-error`} className="mt-1 text-xs text-red-400">
+                      {errors[field]}
+                    </p>
+                  )}
                 </div>
               ))}
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-2">
                   Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
+                  required
+                  minLength={10}
+                  maxLength={5000}
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about the opportunity..."
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
                   className={`w-full px-4 py-3 rounded-xl bg-muted/40 border ${
                     errors.message ? "border-red-500/50" : "border-border"
                   } text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm resize-none`}
                 />
-                {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
+                {errors.message && (
+                  <p id="contact-message-error" className="mt-1 text-xs text-red-400">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
               <motion.button

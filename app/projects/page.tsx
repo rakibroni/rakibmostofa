@@ -6,16 +6,22 @@ import { projects, siteUrl } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Detailed full-stack, React Native, Next.js, and NX project case studies by Md Rakib Mostofa.",
+    "Production web, mobile, marketplace, and social-platform case studies by Md Rakib Mostofa.",
   alternates: {
     canonical: `${siteUrl}/projects`,
   },
   openGraph: {
     title: "Projects | Md Rakib Mostofa",
     description:
-      "Explore production web, mobile, marketplace, and monorepo architecture projects by Md Rakib Mostofa.",
+      "Explore Md Rakib Mostofa's contributions to production web, mobile, marketplace, and social-platform products.",
     url: `${siteUrl}/projects`,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects | Md Rakib Mostofa",
+    description:
+      "Production web, mobile, marketplace, and social-platform case studies by Md Rakib Mostofa.",
   },
 };
 
@@ -33,9 +39,8 @@ export default function ProjectsPage() {
             Production Work and Case Studies
           </h1>
           <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed">
-            A deeper look at full-stack web applications, React Native mobile
-            products, marketplace experiences, and NX monorepo architecture I
-            have worked on.
+            Production TRADEFOOX work I contribute to as part of the SCC Group
+            team, covering marketplace, mobile, and social-platform surfaces.
           </p>
         </div>
 
@@ -54,7 +59,7 @@ export default function ProjectsPage() {
                 )}
                 <div className="absolute bottom-4 left-6 right-6">
                   <h2 className="text-xl font-bold text-white">{project.title}</h2>
-                  <p className="text-sm text-foreground/60 mt-0.5">
+                  <p className="text-sm text-white/75 mt-0.5">
                     {project.subtitle}
                   </p>
                 </div>

@@ -1,21 +1,40 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Braces, Database, GitBranch, Layers3, Plug, Server } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const skills = [
-  { name: "React", symbol: "⚛", color: "#61DAFB" },
-  { name: "React Native", symbol: "📱", color: "#61DAFB" },
-  { name: "Next.js", symbol: "▲", color: "#ffffff" },
-  { name: "NestJS", symbol: "🐈", color: "#E0234E" },
-  { name: "Node.js", symbol: "⬡", color: "#339933" },
-  { name: "TypeScript", symbol: "TS", color: "#3178C6" },
-  { name: "Redux", symbol: "◆", color: "#764ABC" },
-  { name: "PostgreSQL", symbol: "🐘", color: "#336791" },
-  { name: "Docker", symbol: "🐳", color: "#2496ED" },
-  { name: "AWS", symbol: "☁", color: "#FF9900" },
-  { name: "Tailwind CSS", symbol: "🌊", color: "#06B6D4" },
-  { name: "GraphQL", symbol: "◈", color: "#E535AB" },
+const skillGroups = [
+  {
+    title: "Frontend",
+    icon: Braces,
+    skills: ["React.js", "Next.js", "React Native", "TypeScript", "JavaScript", "Tailwind CSS", "Bootstrap"],
+  },
+  {
+    title: "State & Data",
+    icon: Layers3,
+    skills: ["Redux Toolkit", "RTK Query", "Context API", "REST APIs"],
+  },
+  {
+    title: "Backend",
+    icon: Server,
+    skills: ["Node.js", "NestJS", "Go / Gin", "PHP", "Laravel", "Symfony", "CodeIgniter"],
+  },
+  {
+    title: "Databases & Search",
+    icon: Database,
+    skills: ["PostgreSQL", "MySQL", "Elasticsearch"],
+  },
+  {
+    title: "DevOps & Delivery",
+    icon: GitBranch,
+    skills: ["Docker", "GitHub Actions", "GitLab CI/CD", "Git"],
+  },
+  {
+    title: "Integrations",
+    icon: Plug,
+    skills: ["Stripe Connect", "Firebase", "GA4", "Google Ads / AdMob", "Third-party REST APIs"],
+  },
 ];
 
 export function Skills() {
@@ -26,32 +45,38 @@ export function Skills() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Skills"
-          title="Tech Stack"
-          subtitle="Technologies I use to build production-grade applications — from mobile to cloud."
+          title="Engineering Toolkit"
+          subtitle="Technologies I use across product interfaces, APIs, data, integrations, and delivery."
         />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill.name}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillGroups.map((group, i) => (
+            <motion.section
+              key={group.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              whileHover={{ y: -4, scale: 1.03 }}
-              className="glass-premium glow-border rounded-xl p-5 flex flex-col items-center gap-3 cursor-default group"
-              style={{ boxShadow: `0 0 0 0 ${skill.color}00` }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              whileHover={{ y: -3 }}
+              className="glass-premium glow-border rounded-xl p-6"
             >
-              <span
-                className="text-2xl group-hover:scale-110 transition-transform duration-300"
-                style={{ filter: `drop-shadow(0 0 8px ${skill.color}40)` }}
-              >
-                {skill.symbol}
-              </span>
-              <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
-                {skill.name}
-              </span>
-            </motion.div>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <group.icon className="w-5 h-5 text-primary" />
+                </span>
+                <h3 className="font-semibold text-foreground">{group.title}</h3>
+              </div>
+              <ul className="flex flex-wrap gap-2" aria-label={`${group.title} skills`}>
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="px-3 py-1.5 text-xs font-medium text-muted-foreground bg-muted/50 rounded-lg border border-border"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.section>
           ))}
         </div>
       </div>

@@ -12,9 +12,10 @@ const defaultSchema = {
       "@id": `${siteUrl}/#person`,
       name: "Md Rakib Mostofa",
       url: siteUrl,
-      jobTitle: "Full-Stack Software Engineer",
+      image: `${siteUrl}/profile.jpg`,
+      jobTitle: "Frontend-Focused Full-Stack / Product Engineer",
       description:
-        "Full-Stack Software Engineer specializing in React, React Native, Next.js, and Node.js. Based in Chemnitz, Germany.",
+        "Frontend-Focused Full-Stack / Product Engineer based in Chemnitz, Germany, specializing in React, Next.js, React Native, TypeScript, and scalable web and mobile applications.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Chemnitz",
@@ -23,10 +24,16 @@ const defaultSchema = {
       alumniOf: [
         {
           "@type": "CollegeOrUniversity",
-          name: "Technische Universitaet Chemnitz",
+          name: "Technische Universität Chemnitz",
           description: "Master of Science in Automotive Software Engineering",
         },
+        {
+          "@type": "CollegeOrUniversity",
+          name: "University of Information Technology and Sciences",
+          description: "Bachelor of Science in Computer Science / Informatics and Technology",
+        },
       ],
+      knowsLanguage: ["Bengali", "English", "German"],
       knowsAbout: [
         "React",
         "Next.js",
@@ -34,7 +41,10 @@ const defaultSchema = {
         "TypeScript",
         "Node.js",
         "NestJS",
+        "Go",
         "PostgreSQL",
+        "Elasticsearch",
+        "Stripe Connect",
         "Docker",
       ],
       sameAs: [externalLinks.github, externalLinks.linkedin],
