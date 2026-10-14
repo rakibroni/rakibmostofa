@@ -1,3 +1,4 @@
+import { certifications } from "@/lib/certifications";
 import { externalLinks, siteUrl } from "@/lib/projects";
 
 type JsonLdProps = {
@@ -48,6 +49,17 @@ const defaultSchema = {
         "Docker",
       ],
       sameAs: [externalLinks.github, externalLinks.linkedin],
+      hasCredential: certifications.map((cert) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: cert.title,
+        credentialCategory: "Professional Certificate",
+        recognizedBy: {
+          "@type": "Organization",
+          name: cert.issuer,
+        },
+        url: cert.credentialUrl,
+        dateCreated: "2024-12-01",
+      })),
     },
     {
       "@type": "WebSite",

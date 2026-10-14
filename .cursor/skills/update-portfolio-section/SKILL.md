@@ -15,6 +15,7 @@ description: Updates homepage portfolio sections (Hero, About, Skills, Experienc
 | Experience | `components/sections/experience.tsx` | `#experience` |
 | Projects | `components/sections/projects.tsx` | `#projects` |
 | GitHub Stats | `components/sections/github-stats.tsx` | `#github` |
+| Certifications | `components/sections/certifications.tsx` | `#certifications` |
 | Education | `components/sections/education.tsx` | `#education` |
 | Testimonials | `components/sections/testimonials.tsx` | `#testimonials` |
 | Contact | `components/sections/contact.tsx` | `#contact` |
